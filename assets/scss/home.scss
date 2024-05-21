@@ -1,0 +1,81 @@
+/* Estilo personalizado para el footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #0a203d;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+footer ul {
+  gap: 30px;
+}
+
+.footer {
+  color: white !important;
+}
+
+/* Estilo personalizado para la cabecera */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #edeef6;
+  padding: 10px 0;
+  height: 130px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container-body {
+  margin-top: 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #0a203d;
+}
+
+.container img {
+  width: 150px;
+}
+
+.checkbox-custom {
+  display: none;
+}
+
+.checkbox-label {
+  cursor: pointer;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+  color: #5c697e;
+}
+
+.checkbox-label:hover {
+  background-color: #f0f0f0;
+}
+
+.checkbox-label.checked {
+  background-color: #0a203d;
+  color: white;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}

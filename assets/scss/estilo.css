@@ -1,0 +1,268 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.portada {
+  background-color: #f2f2f2; /* Color de fondo de la sección de portada */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* Ocupa el 50% del ancho de la pantalla */
+  float: left; /* Colocar esta sección a la izquierda */
+}
+
+.portada img {
+  max-width: 400px; /* Ajuste del tamaño máximo del logo */
+  margin-bottom: 20px; /* Espacio inferior entre el logo y el texto */
+}
+
+.eslogan {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+}
+
+.formulario {
+  position: relative;
+  background-image: url("../assets/img/fondoLogin.webp");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%; /* Ocupa el 50% del ancho de la pantalla */
+  float: left; /* Colocar esta sección a la derecha */
+}
+
+.container-form {
+  position: relative;
+  padding: 20px;
+  background-color: #ffffff; /* Fondo blanco */
+  border: 2px solid #dddddd; /* Borde gris con grosor de 2px */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  z-index: 99999;
+}
+
+.login-form {
+  position: relative;
+  z-index: 2; /* Asegura que el formulario esté por encima del fondo */
+}
+
+.formulario::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Capa de color con opacidad */
+  z-index: 1; /* Asegura que esté detrás del formulario */
+}
+
+.login-form label {
+  display: block; /* Mostrar cada etiqueta en una línea nueva */
+  margin-bottom: 5px; /* Espacio inferior entre etiquetas */
+}
+
+.login-form input[type=text],
+.login-form input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #f9f9f9;
+}
+
+.botones {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.7s ease;
+}
+
+.botones:hover {
+  background-color: purple;
+  transform: scale(1.05);
+}
+
+.login-form a {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: transform 0.7s ease;
+}
+
+.login-form a:hover {
+  color: purple;
+  transform: scale(1.05);
+}
+
+.create-account-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.create-account-btn:hover {
+  background-color: #218838;
+}
+
+.titulo-formulario {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #3c4043;
+  text-align: center;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 5px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #555;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.toggle-password-btn:focus {
+  outline: none;
+}
+
+.toggle-password-btn i {
+  pointer-events: none;
+}
+
+.toggle-password-btn i {
+  font-size: inherit;
+}
+
+/* Estilos para la capa de color con opacidad */
+.formulario-overlay {
+  position: relative;
+  top: 0;
+  right: 50px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Estilos para la imagen */
+.formulario-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Ajusta el formulario para que esté encima de la capa de color */
+.container-form {
+  position: relative;
+  z-index: 2;
+}
+
+/* Estilos personalizados para los inputs */
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=date] {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+  font-size: 16px;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=date]:focus {
+  border-color: #6cb2eb;
+  outline: none;
+}
+
+/* Estilo para el botón */
+.botones {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: purple;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botones:hover {
+  background-color: black;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 20px;
+  top: 35%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #555;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.toggle-password-btn:focus {
+  outline: none;
+}
+
+.toggle-password-btn i {
+  pointer-events: none;
+}
+
+.toggle-password-btn i {
+  font-size: inherit;
+}/*# sourceMappingURL=estilo.css.map */
