@@ -18,24 +18,55 @@ class Imagenes
     public static function getImagenesUsuario($pdo, $idUsuario)
     {
         try {
-            // Preparamos la consulta SQL
+            //Preparamos la consulta con un marcador de posición para el email
             $query = "SELECT * FROM usuariosimagenes WHERE idUsuario != :idUsuario";
 
-            // Preparamos y ejecutamos la consulta
+            //Preparamos la consulta
             $statement = $pdo->prepare($query);
-            $statement->execute(array(':idUsuario' => $idUsuario));
 
-            // Obtenemos los resultados
-            $resulSet = $statement->fetchAll(PDO::FETCH_ASSOC);
+            //Asignamos el valor del email al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
 
-            // Devolvemos los datos
-            return $resulSet;
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultSet = $statement->fetchAll();
         } catch (PDOException $e) {
-            // En caso de error, mostramos el mensaje
+            //En caso de error, mostramos el mensaje
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
+        //Devolvemos los datos
+        return $resultSet;
     }
+
+    public static function getImagenesUsuarioPerfil($pdo, $idUsuario)
+    {
+        try {
+            //Preparamos la consulta con un marcador de posición para el email
+            $query = "SELECT * FROM usuariosimagenes WHERE idUsuario = :idUsuario";
+
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del email al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultSet = $statement->fetchAll();
+        } catch (PDOException $e) {
+            //En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        //Devolvemos los datos
+        return $resultSet;
+    }
+
 
 
 

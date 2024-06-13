@@ -16,14 +16,12 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (isset($_SESSION['idUsuario'])) {
-    $idUsuario = $_SESSION['idUsuario'];
+    $idUsuario = $_SESSION['idUsuarioImagen'];
 
-    // Nos conectamos a BD
-    $pdo = BumBum::conectar();
+    $key = 'd4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9';
+    $idhashed = urldecode($_GET['id']);
 
-    // Cargamos los datos de las imagenes
-    $datosImagenes = Imagenes::getImagenesUsuario($pdo, $idUsuario);
-
+    $desencriptar = Usuario::decrypt($idhashed, $key);
 
 } else {
     exit();

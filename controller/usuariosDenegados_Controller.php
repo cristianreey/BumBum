@@ -3,11 +3,11 @@ namespace controller;
 
 use bd\model\BumBum;
 use bd\model\Usuario;
-use bd\model\Imagenes;
+
 
 
 require_once ("../model/Usuario.php");
-require_once ("../model/Imagenes.php");
+
 
 
 
@@ -22,8 +22,7 @@ if (isset($_SESSION['idUsuario'])) {
     $pdo = BumBum::conectar();
 
     // Cargamos los datos de las imagenes
-    $datosImagenes = Imagenes::getImagenesUsuario($pdo, $idUsuario);
-
+    $totalUsuariosDenegados = Usuario::getUsuariosDenegados($pdo, $idUsuario);
 
 } else {
     exit();

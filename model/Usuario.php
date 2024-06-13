@@ -158,15 +158,13 @@ class Usuario
         // Iniciar o reanudar la sesión
         session_start();
 
-        // Restablecer el tiempo de inactividad cuando se inicia sesión
-        $_SESSION['ultimoAcceso'] = time();
-
         if (empty($email) || empty($password)) {
             return "Por favor, complete todos los campos.";
         } else {
             try {
+
                 // Obtener el usuario de la base de datos
-                $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE gmail = ?");
+                $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
                 $stmt->execute([$email]);
 
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -179,17 +177,18 @@ class Usuario
                     //Verificar si el usuario esta o no activo
                     $esActivo = $usuario['activo'];
 
+
                     if ($hashedPassword === $usuario['contrasena']) {
                         // Verificar si el usuario está activo
                         if ($esActivo) {
-                            return "Inicio de sesión exitoso.";
+                            return true;
                         } else {
                             // Redireccionar al usuario a otra página si no está activo
                             header("Location: ../view/verificacion_view.php");
                             exit;
                         }
                     } else {
-                        return "El usuario o la contraseña no es correcto.";
+                        return false;
                     }
 
                 }
@@ -230,25 +229,452 @@ class Usuario
     }
 
 
-    public static function getDatosUsuario($pdo)
+    public static function getDatosUsuarioDetalles($pdo, $idUsuario)
     {
 
         try {
+
+
             //Realizamos la query
-            $query = "SELECT * FROM usuariosdetalles ";
+            $query = "SELECT * FROM usuariosdetalles WHERE idUsuario = :idUsuario";
 
-            //ejecutsmos la consulta 
-            $resultado = $pdo->query($query);
 
-            //sacamos todos los registros de los productos
-            $resulSet = $resultado->fetchAll();
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del email al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultSet = $statement->fetchAll();
+
         } catch (PDOException $e) {
-            //en caso de error mostramos el mensaje
+            //En caso de error, mostramos el mensaje
             print "¡Error!: " . $e->getMessage() . "<br/>";
             die();
         }
         //Devolvemos los datos
-        return $resulSet;
+        return $resultSet;
+    }
+
+    public static function getDatosUsuario($pdo, $idUsuario)
+    {
+        try {
+            //Preparamos la consulta con un marcador de posición para el email
+            $query = "SELECT * FROM usuarios WHERE idUsuario = :idUsuario";
+
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del email al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultSet = $statement->fetchAll();
+
+        } catch (PDOException $e) {
+            //En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        //Devolvemos los datos
+        return $resultSet;
+    }
+
+    public static function getDatosUsuarioPorEmail($pdo, $email)
+    {
+        try {
+            //Preparamos la consulta con un marcador de posición para el email
+            $query = "SELECT * FROM usuarios WHERE email = :email";
+
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del email al marcador de posición
+            $statement->bindParam(':email', $email);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultSet = $statement->fetchAll();
+
+        } catch (PDOException $e) {
+            //En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        //Devolvemos los datos
+        return $resultSet;
+    }
+
+    public static function insertarUsuarioSuperlike($pdo, $idUsuarioManda, $idUsuarioRecibe)
+    {
+        try {
+            // Preparamos la consulta para insertar un nuevo registro en la tabla usuariossuperlike
+            $query = "INSERT INTO usuariossuperlike (idUsuarioManda, idUsuarioRecibe, fechaSuperLike) VALUES (:idUsuarioManda, :idUsuarioRecibe, NOW())";
+
+            // Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            // Asignamos los valores de los parámetros a los marcadores de posición
+            $statement->bindParam(':idUsuarioManda', $idUsuarioManda);
+            $statement->bindParam(':idUsuarioRecibe', $idUsuarioRecibe);
+
+            // Ejecutamos la consulta
+            $statement->execute();
+
+
+
+        } catch (PDOException $e) {
+            // En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public static function insertarUsuarioRechazados($pdo, $idUsuarioManda, $idUsuarioRecibe)
+    {
+        try {
+            // Preparamos la consulta para insertar un nuevo registro en la tabla usuariossuperlike
+            $query = "INSERT INTO usuariosdenegados (idUsuarioDenegado, idUsuarioDenegador, fecha) VALUES (:idUsuarioRecibe, :idUsuarioManda, NOW())";
+
+            // Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            // Asignamos los valores de los parámetros a los marcadores de posición
+            $statement->bindParam(':idUsuarioManda', $idUsuarioManda);
+            $statement->bindParam(':idUsuarioRecibe', $idUsuarioRecibe);
+
+            // Ejecutamos la consulta
+            $statement->execute();
+
+
+
+        } catch (PDOException $e) {
+            // En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public static function insertarUsuarioBloquear($pdo, $idUsuarioManda, $idUsuarioRecibe, $motivo)
+    {
+        try {
+            // Preparamos la consulta para insertar un nuevo registro en la tabla usuariossuperlike
+            $query = "INSERT INTO usuariosbloqueados (idUsuarioBloqueador, idUsuarioBloqueado, fechaBloqueo, motivo) VALUES (:idUsuarioBloqueador, :idUsuarioBloqueado, NOW(), :motivo)";
+
+            // Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            // Asignamos los valores de los parámetros a los marcadores de posición
+            $statement->bindParam(':idUsuarioBloqueador', $idUsuarioManda);
+            $statement->bindParam(':idUsuarioBloqueado', $idUsuarioRecibe);
+            $statement->bindParam(':motivo', $motivo);
+
+
+            // Ejecutamos la consulta
+            $statement->execute();
+
+
+
+        } catch (PDOException $e) {
+            // En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+
+    public static function contarUsuariosSuperlike($pdo, $idUsuario)
+    {
+        try {
+            //Preparamos la consulta con un marcador de posición para el idUsuario
+            $query = "SELECT COUNT(*) AS total FROM usuariossuperlike WHERE idusuarioManda = :idUsuario";
+
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del idUsuario al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultado = $statement->fetch(PDO::FETCH_ASSOC);
+
+            //Extraemos el total de la consulta
+            $total = $resultado['total'];
+
+        } catch (PDOException $e) {
+            //En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        //Devolvemos el total
+        return $total;
+    }
+
+
+    public static function getUsuariosDenegados($pdo, $idUsuario)
+    {
+        try {
+            //Preparamos la consulta con un marcador de posición para el idUsuario
+            $query = "SELECT COUNT(*) AS total FROM usuariosdenegados WHERE idUsuarioDenegador = :idUsuario";
+
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del idUsuario al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultado = $statement->fetch(PDO::FETCH_ASSOC);
+
+            //Extraemos el total de la consulta
+            $total = $resultado['total'];
+
+        } catch (PDOException $e) {
+            //En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        //Devolvemos el total
+        return $total;
+    }
+    public static function getUsuariosBloqueados($pdo, $idUsuario)
+    {
+        try {
+            //Preparamos la consulta con un marcador de posición para el idUsuario
+            $query = "SELECT COUNT(*) AS total FROM usuariosbloqueados WHERE idUsuarioBloqueador = :idUsuario";
+
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del idUsuario al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultado = $statement->fetch(PDO::FETCH_ASSOC);
+
+            //Extraemos el total de la consulta
+            $total = $resultado['total'];
+
+        } catch (PDOException $e) {
+            //En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        //Devolvemos el total
+        return $total;
+    }
+
+    public static function modificarUsuarioDetalles($pdo, $idUsuario, $provincia, $pais, $domicilio, $codigoPostal, $ciudad, $colorFavorito, $comidaFavorita, $deporteFavorito, $hobbie, $colorPiel, $altura, $colorPelo, $tatuajes, $colorOjos)
+    {
+        try {
+            // Preparamos la consulta de actualización
+            $query = "UPDATE usuariosdetalles SET provincia = :provincia, pais = :pais, domicilio = :domicilio, codigoPostal = :codigoPostal, ciudad = :ciudad, colorFavorito = :colorFavorito, comidaFavorita = :comidaFavorita, deporteFavorito = :deporteFavorito, hobbie = :hobbie, colorPiel = :colorPiel, altura = :altura, colorPelo = :colorPelo, tatuajes = :tatuajes, colorOjos = :colorOjos WHERE idUsuario = :idUsuario";
+
+            // Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            // Asignamos los valores a los marcadores de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+            $statement->bindParam(':provincia', $provincia);
+            $statement->bindParam(':pais', $pais);
+            $statement->bindParam(':domicilio', $domicilio);
+            $statement->bindParam(':codigoPostal', $codigoPostal);
+            $statement->bindParam(':ciudad', $ciudad);
+            $statement->bindParam(':colorFavorito', $colorFavorito);
+            $statement->bindParam(':comidaFavorita', $comidaFavorita);
+            $statement->bindParam(':deporteFavorito', $deporteFavorito);
+            $statement->bindParam(':hobbie', $hobbie);
+            $statement->bindParam(':colorPiel', $colorPiel);
+            $statement->bindParam(':altura', $altura);
+            $statement->bindParam(':colorPelo', $colorPelo);
+            $statement->bindParam(':tatuajes', $tatuajes);
+            $statement->bindParam(':colorOjos', $colorOjos);
+
+            // Ejecutamos la consulta
+            $statement->execute();
+
+            // Devolvemos true si la actualización fue exitosa
+            return true;
+        } catch (PDOException $e) {
+            // En caso de error, mostramos el mensaje y devolvemos false
+            echo "¡Error!: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function modificarContraseña($pdo, $password, $idUsuario)
+    {
+        try {
+
+
+
+            // Obtener el usuario de la base de datos
+            $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE idUsuario = ?");
+            $stmt->execute([$idUsuario]);
+
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($usuario) {
+
+                $salt = $usuario['salt'];
+
+                // Hash de la contraseña
+                $hashedPassword = hash('sha256', $password . $salt);
+
+                // Preparamos la consulta de actualización
+                $query = "UPDATE usuarios SET contrasena = :contrasena WHERE idUsuario = :idUsuario";
+
+                // Preparamos la consulta
+                $statement = $pdo->prepare($query);
+
+                // Asignamos los valores a los marcadores de posición
+                $statement->bindParam(':contrasena', $hashedPassword);
+                $statement->bindParam(':idUsuario', $idUsuario);
+
+
+                // Ejecutamos la consulta
+                $statement->execute();
+            }
+
+
+
+            // Devolvemos true si la actualización fue exitosa
+            return true;
+        } catch (PDOException $e) {
+            // En caso de error, mostramos el mensaje y devolvemos false
+            echo "¡Error!: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function eliminarCuenta($pdo, $idUsuario)
+    {
+        try {
+            // Preparar la consulta SQL para eliminar el usuario
+            $stmt = $pdo->prepare("DELETE FROM usuarios WHERE idUsuario = :idUsuario");
+
+            // Asignar el valor del idUsuario al parámetro de la consulta
+            $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Devolvemos true si la eliminación fue exitosa
+            return true;
+        } catch (PDOException $e) {
+            // En caso de error, mostramos el mensaje y devolvemos false
+            echo "¡Error!: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function eliminarCuentaDetalles($pdo, $idUsuario)
+    {
+        try {
+            // Preparar la consulta SQL para eliminar el usuario
+            $stmt = $pdo->prepare("DELETE FROM usuariosdetalles WHERE idUsuario = :idUsuario");
+
+            // Asignar el valor del idUsuario al parámetro de la consulta
+            $stmt->bindParam(':idUsuario', $idUsuario, PDO::PARAM_INT);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Devolvemos true si la eliminación fue exitosa
+            return true;
+        } catch (PDOException $e) {
+            // En caso de error, mostramos el mensaje y devolvemos false
+            echo "¡Error!: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function obtenerTiempoSesion()
+    {
+        if (isset($_SESSION['login_time'])) {
+            $tiempoInicio = $_SESSION['login_time'];
+            $tiempoActual = time();
+            $tiempoTranscurrido = $tiempoActual - $tiempoInicio;
+
+            // Calcular días, horas, minutos y segundos
+            $dias = floor($tiempoTranscurrido / (60 * 60 * 24));
+            $horas = floor(($tiempoTranscurrido % (60 * 60 * 24)) / (60 * 60));
+            $minutos = floor(($tiempoTranscurrido % (60 * 60)) / 60);
+            $segundos = $tiempoTranscurrido % 60;
+
+            // Formatear el tiempo transcurrido
+            $tiempoFormateado = '';
+            if ($dias > 0) {
+                $tiempoFormateado .= "$dias días, ";
+            }
+            $tiempoFormateado .= sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
+
+            return $tiempoFormateado;
+        } else {
+            return '0';
+        }
+    }
+
+
+    public static function getDatosUsuarioSuperlike($pdo, $idUsuario)
+    {
+        try {
+            //Preparamos la consulta con un marcador de posición para el email
+            $query = "SELECT * FROM usuariossuperlike WHERE idUsuarioManda = :idUsuario";
+
+            //Preparamos la consulta
+            $statement = $pdo->prepare($query);
+
+            //Asignamos el valor del email al marcador de posición
+            $statement->bindParam(':idUsuario', $idUsuario);
+
+            //Ejecutamos la consulta
+            $statement->execute();
+
+            //Obtenemos el resultado
+            $resultSet = $statement->fetchAll();
+
+        } catch (PDOException $e) {
+            //En caso de error, mostramos el mensaje
+            print "¡Error!: " . $e->getMessage() . "<br/>";
+            die();
+        }
+        //Devolvemos los datos
+        return $resultSet;
+    }
+
+    public static function encrypt($data, $key)
+    {
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+        $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+        // Convertir a hexadecimal para evitar caracteres especiales
+        return bin2hex($iv . $encrypted);
+    }
+
+    public static function decrypt($data, $key)
+    {
+        // Convertir de hexadecimal a binario
+        $data = hex2bin($data);
+        $iv = substr($data, 0, openssl_cipher_iv_length('aes-256-cbc'));
+        $encrypted = substr($data, openssl_cipher_iv_length('aes-256-cbc'));
+        return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
     }
 
 

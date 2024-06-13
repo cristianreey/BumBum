@@ -22,7 +22,7 @@ if (isset($_SESSION['idUsuario'])) {
     $pdo = BumBum::conectar();
 
     // Cargamos los datos de las imagenes
-    $datosImagenes = Imagenes::getImagenesUsuario($pdo, $idUsuario);
+    $datosImagenesPerfil = Imagenes::getImagenesUsuarioPerfil($pdo, $idUsuario);
 
 
 } else {

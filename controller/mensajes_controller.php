@@ -3,7 +3,7 @@ namespace controller;
 
 use bd\model\BumBum;
 use bd\model\Usuario;
-use bd\model\Imagenes;
+use bd\model\Mensajes;
 
 
 require_once ("../model/Usuario.php");
@@ -22,7 +22,7 @@ if (isset($_SESSION['idUsuario'])) {
     $pdo = BumBum::conectar();
 
     // Cargamos los datos de las imagenes
-    $datosImagenes = Imagenes::getImagenesUsuario($pdo, $idUsuario);
+    $datosUsuariosSuperlike = Usuario::getDatosUsuarioSuperlike($pdo, $idUsuario);
 
 
 } else {

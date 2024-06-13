@@ -56,10 +56,11 @@
         <div class="container-form">
             <form class="login-form" action="../controller/login_Controller.php" method="POST">
                 <h3 class="titulo-formulario">INICIO DE SESIÓN</h3>
-                <input type="text" id="usuario" name="usuario" placeholder="Usuario o Email" required><br><br>
+                <input type="text" id="email" name="email" placeholder="Usuario o Email" required><br><br>
                 <div class="password-input-container">
                     <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
-                    <button class="toggle-password-btn" onclick="togglePasswordVisibility()">
+                    <button type="button" class="toggle-password-btn"
+                        onclick="togglePasswordVisibility('contrasena', event)">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
@@ -72,4 +73,41 @@
         </div>
     </section>
     <script src="../assets/js/login.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        // Manejamos la visibilidad de la contraseña
+        function togglePasswordVisibility(inputId, event) {
+            event.preventDefault();
+            var passwordInput = document.getElementById(inputId);
+            var icon = passwordInput.nextElementSibling.querySelector("i");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        // Obtener el parámetro 'error' de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get("error");
+
+        // Mostrar una alerta si 'error' es 'true'
+        if (error === "true") {
+            // Alerta con SweetAlert2 si el formato del teléfono es incorrecto
+            Swal.fire({
+                icon: "error",
+                title: "¡Oops!",
+                text: "Por favor, vuelve a introducir los datos correctamente.",
+                confirmButtonColor: "black",
+                confirmButtonText: "Entendido",
+            });
+        }
+    </script>
 </body>
+
+</html>
