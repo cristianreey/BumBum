@@ -5,6 +5,8 @@ session_start();
 // Verificar si existen cookies con imágenes vistas anteriormente y agregarlas a la sesión si existen
 
 include ("../controller/main_Controller.php");
+
+
 ?>
 
 
@@ -342,21 +344,22 @@ include ("../controller/main_Controller.php");
                 <?php
                 include ('../controller/ImagenesHome_Controller.php');
 
-                // Inicializar $_SESSION['vistas'] si aún no se ha inicializado
-                if (!isset($_SESSION['vistas'])) {
-                    $_SESSION['vistas'] = array();
-                }
 
                 if (isset($datosImagenes) && !empty($datosImagenes)) {
                     foreach ($datosImagenes as $index => $imagen) {
+                        $idUsuarioImagen = $imagen['idUsuario'];
+                        include ('../controller/comprobacionImagenes_Controller.php');
 
-
-                        // Verificar si el ID de usuario de la imagen actual ya ha sido visto por el usuario
-                        if (!in_array($imagen['idUsuario'], $_SESSION['vistas'])) {
-
-
-                            // Obtener los detalles del usuario asociado a esta imagen
-                            $_SESSION['idUsuarioImagen'] = $imagen['idUsuario'];
+                        // Verificar relaciones
+                        if (!$existeSuperlike &&
+                            ! $existeDenegados &&
+                            ! $existeBloqueados) {
+                
+                            // Añadir idUsuarioImagen a $_SESSION['vistas']
+                            $_SESSION['vistas'][] = $idUsuarioImagen;
+                
+                            // También puedes asignar $_SESSION['idUsuarioImagen'] si es necesario
+                            $_SESSION['idUsuarioImagen'] = $idUsuarioImagen;
 
                             include ('../controller/usuarioDetalles_Controller.php');
 

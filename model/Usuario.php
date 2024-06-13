@@ -677,5 +677,72 @@ class Usuario
         return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
     }
 
+    // Función para verificar si existe una relación de Superlike entre dos usuarios
+    public static function existeRelacionSuperlike($pdo, $idUsuario, $idUsuarioImagen) {
+
+    $stmt = $pdo->prepare("SELECT COUNT(*) AS count FROM usuariossuperlike WHERE idUsuarioManda = :idUsuario AND idUsuarioRecibe = :idUsuarioImagen");
+
+    $stmt->execute(['idUsuario' => $idUsuario, 'idUsuarioImagen' => $idUsuarioImagen]);
+
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $result['count'] > 0;
+}
+
+// Función para verificar si un usuario está denegado por el usuario actual
+public static function existeRelacionDenegada($pdo, $idUsuario, $idUsuarioImagen) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) AS count FROM usuariosdenegados WHERE idUsuarioDenegador = :idUsuario AND idUsuarioDenegado = :idUsuarioImagen");
+    $stmt->execute(['idUsuario' => $idUsuario, 'idUsuarioImagen' => $idUsuarioImagen]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['count'] > 0;
+}
+
+// Función para verificar si un usuario está bloqueado por el usuario actual
+public static function existeRelacionBloqueada($pdo, $idUsuario, $idUsuarioImagen) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) AS count FROM usuariosbloqueados WHERE idUsuarioBloqueador = :idUsuario AND idUsuarioBloqueado = :idUsuarioImagen");
+    $stmt->execute(['idUsuario' => $idUsuario, 'idUsuarioImagen' => $idUsuarioImagen]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result['count'] > 0;
+}
+
+public static function insertarUsuarioDetalles($pdo, $idUsuario, $provincia, $pais, $domicilio, $codigoPostal, $ciudad, $colorFavorito, $comidaFavorita, $deporteFavorito, $hobbie, $colorPiel, $altura, $colorPelo, $tatuajes, $colorOjos)
+{
+    try {
+        // Preparamos la consulta de inserción
+        $query = "INSERT INTO usuariosdetalles (idUsuario, provincia, pais, domicilio, codigoPostal, ciudad, colorFavorito, comidaFavorita, deporteFavorito, hobbie, colorPiel, altura, colorPelo, tatuajes, colorOjos) 
+                  VALUES (:idUsuario, :provincia, :pais, :domicilio, :codigoPostal, :ciudad, :colorFavorito, :comidaFavorita, :deporteFavorito, :hobbie, :colorPiel, :altura, :colorPelo, :tatuajes, :colorOjos)";
+
+        // Preparamos la consulta
+        $statement = $pdo->prepare($query);
+
+        // Asignamos los valores a los marcadores de posición
+        $statement->bindParam(':idUsuario', $idUsuario);
+        $statement->bindParam(':provincia', $provincia);
+        $statement->bindParam(':pais', $pais);
+        $statement->bindParam(':domicilio', $domicilio);
+        $statement->bindParam(':codigoPostal', $codigoPostal);
+        $statement->bindParam(':ciudad', $ciudad);
+        $statement->bindParam(':colorFavorito', $colorFavorito);
+        $statement->bindParam(':comidaFavorita', $comidaFavorita);
+        $statement->bindParam(':deporteFavorito', $deporteFavorito);
+        $statement->bindParam(':hobbie', $hobbie);
+        $statement->bindParam(':colorPiel', $colorPiel);
+        $statement->bindParam(':altura', $altura);
+        $statement->bindParam(':colorPelo', $colorPelo);
+        $statement->bindParam(':tatuajes', $tatuajes);
+        $statement->bindParam(':colorOjos', $colorOjos);
+
+        // Ejecutamos la consulta
+        $statement->execute();
+
+        // Devolvemos true si la inserción fue exitosa
+        return true;
+    } catch (PDOException $e) {
+        // En caso de error, mostramos el mensaje y devolvemos false
+        echo "¡Error!: " . $e->getMessage();
+        return false;
+    }
+}
+
 
 }

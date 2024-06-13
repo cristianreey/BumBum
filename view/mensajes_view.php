@@ -173,6 +173,11 @@ include ("../controller/main_Controller.php");
         a:hover .nombre {
             scale: 1.2;
         }
+
+        .parrafo{
+            font-family: "Montserrat Alternates", sans-serif;
+            padding: 20px;
+        }
     </style>
 
 </head>
@@ -215,6 +220,9 @@ include ("../controller/main_Controller.php");
                 echo '</div>';
                 echo '</div></a>';
             }
+        }
+        else{
+            echo'<p class="parrafo">No hay usuarios con Superlike para enviar mensajes.</p>';
         }
 
         ?>
