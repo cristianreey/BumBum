@@ -230,7 +230,8 @@ include ("../controller/main_Controller.php");
         }
 
         /* Estilo para el botón "Modificar datos" */
-        #btnModificarDatos,  #btnInsertarDatos {
+        #btnModificarDatos,
+        #btnInsertarDatos {
             background-color: black;
             /* Color de fondo verde */
             color: white;
@@ -299,14 +300,58 @@ include ("../controller/main_Controller.php");
         .container-datos-modificar button[type="submit"]:hover {
             background-color: purple;
         }
+
         .container-datos-insertar button[type="submit"]:hover {
             background-color: purple;
         }
 
 
         .container-datos,
-        .container-datos-modificar, .container-datos-insertar {
+        .container-datos-modificar,
+        .container-datos-insertar {
             font-family: "Montserrat Alternates", sans-serif;
+        }
+
+        /* Estilos generales para los formularios */
+        .formulario {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+
+
+        /* Estilo para el input de tipo file */
+        .formulario input[type=file] {
+            margin-bottom: 10px;
+            margin-top: 10px;
+            margin-left: 20px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Estilo para el botón de submit */
+        .formulario input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .formulario input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilo para los mensajes de error o éxito si los tienes */
+        .formulario .mensaje {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #900;
+            /* Color de mensaje de error */
         }
     </style>
 
@@ -327,8 +372,27 @@ include ("../controller/main_Controller.php");
 
                 if (isset($datosImagenesPerfil) && !empty($datosImagenesPerfil)) {
                     foreach ($datosImagenesPerfil as $index => $imagen) {
+
+                        echo '<form class="formulario" action="../controller/ModificarImagen_Controller.php" method="post" enctype="multipart/form-data" >';
                         echo '<div class="imagen-perfil-container" style="background-image: url(' . $imagen['url'] . ');"></div>';
+                        echo '<div class="Container-modificarImagen" style="display:none;">';
+                        echo '<input type="file" name="fileToUpload" id="fileToUpload">';
+                        echo '<input type="submit" value="Modificar Imagen" name="submit">';
+                        echo '</div>';
+                        echo '</form>';
+                        echo '<button class="btnEditar btn" id="btnEditar" name="submit" value="Editar Imagen">Editar Imagen</button>';
+
                     }
+                } else {
+                    echo '<form action="../controller/SubirImagen_Controller.php" method="post" enctype="multipart/form-data" >';
+                    echo '<div class="imagen-perfil-container" style="background-image: url(' . "..//assets/img/usu.wepb" . ');"></div>';
+                    echo '<div class="Container-modificarImagen" style="display:none;">';
+                    echo '<input type="file" name="fileToUpload" id="fileToUpload">';
+                    echo '<input type="submit" value="Subir Imagen" name="submit">';
+                    echo '</div>';
+                    echo '</form>';
+                    echo '<button class="btnEditar btn" id="btnEditar" name="submit" value="Editar Imagen">Editar Imagen</button>';
+
                 }
                 ?>
             </div>
@@ -395,56 +459,56 @@ include ("../controller/main_Controller.php");
         <div class="segunda-section">
             <h2 class="titulo">Detalles del perfil</h2>
             <div class="details-container">
-            <?php
-// Obtener los detalles del usuario asociado a esta imagen
-$_SESSION['idUsuarioImagen'] = $_SESSION['idUsuario'];
-include("../controller/usuarioDetalles_Controller.php");
+                <?php
+                // Obtener los detalles del usuario asociado a esta imagen
+                $_SESSION['idUsuarioImagen'] = $_SESSION['idUsuario'];
+                include ("../controller/usuarioDetalles_Controller.php");
 
-// Presentar los campos de detalles del usuario
-foreach ($datosUsuario as $usuario) {
-    echo '<h2>' . $usuario['nombre'] . '</h2>';
-}
-echo '<div class="container-datos">';
+                // Presentar los campos de detalles del usuario
+                foreach ($datosUsuario as $usuario) {
+                    echo '<h2>' . $usuario['nombre'] . '</h2>';
+                }
+                echo '<div class="container-datos">';
 
-if (empty($datosUsuarioDetalles)) {
-    echo '<div class="detail"><i class="material-icons">location_on</i> Provincia: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">public</i> País: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">home</i> Domicilio: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">local_post_office</i> Código Postal: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">location_city</i> Ciudad: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">color_lens</i> Color Favorito: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">restaurant</i> Comida Favorita: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">sports_soccer</i> Deporte Favorito: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">favorite</i> Hobbie: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">face</i> Color Piel: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">height</i> Altura: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">palette</i> Color Pelo: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">style</i> Tatuajes: <span class="detail-value"></span></div>';
-    echo '<div class="detail"><i class="material-icons">visibility</i> Color Ojos: <span class="detail-value"></span></div>';
-    echo '<button id="btnInsertarDatos" type="button">Añadir datos</button>';
-} else {
-    foreach ($datosUsuarioDetalles as $usuarioDetalles) {
-        // Mostrar los detalles del usuario
-        echo '<div class="detail"><i class="material-icons">location_on</i> Provincia: <span class="detail-value">' . $usuarioDetalles['provincia'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">public</i> País: <span class="detail-value">' . $usuarioDetalles['pais'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">home</i> Domicilio: <span class="detail-value">' . $usuarioDetalles['domicilio'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">local_post_office</i> Código Postal: <span class="detail-value">' . $usuarioDetalles['codigoPostal'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">location_city</i> Ciudad: <span class="detail-value">' . $usuarioDetalles['ciudad'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">color_lens</i> Color Favorito: <span class="detail-value">' . $usuarioDetalles['colorFavorito'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">restaurant</i> Comida Favorita: <span class="detail-value">' . $usuarioDetalles['comidaFavorita'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">sports_soccer</i> Deporte Favorito: <span class="detail-value">' . $usuarioDetalles['deporteFavorito'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">favorite</i> Hobbie: <span class="detail-value">' . $usuarioDetalles['hobbie'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">face</i> Color Piel: <span class="detail-value">' . $usuarioDetalles['colorPiel'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">height</i> Altura: <span class="detail-value">' . $usuarioDetalles['altura'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">palette</i> Color Pelo: <span class="detail-value">' . $usuarioDetalles['colorPelo'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">style</i> Tatuajes: <span class="detail-value">' . $usuarioDetalles['tatuajes'] . '</span></div>';
-        echo '<div class="detail"><i class="material-icons">visibility</i> Color Ojos: <span class="detail-value">' . $usuarioDetalles['colorOjos'] . '</span></div>';
-        echo '<button id="btnModificarDatos" type="button">Modificar datos</button>';
-    }
-}
+                if (empty($datosUsuarioDetalles)) {
+                    echo '<div class="detail"><i class="material-icons">location_on</i> Provincia: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">public</i> País: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">home</i> Domicilio: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">local_post_office</i> Código Postal: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">location_city</i> Ciudad: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">color_lens</i> Color Favorito: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">restaurant</i> Comida Favorita: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">sports_soccer</i> Deporte Favorito: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">favorite</i> Hobbie: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">face</i> Color Piel: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">height</i> Altura: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">palette</i> Color Pelo: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">style</i> Tatuajes: <span class="detail-value"></span></div>';
+                    echo '<div class="detail"><i class="material-icons">visibility</i> Color Ojos: <span class="detail-value"></span></div>';
+                    echo '<button id="btnInsertarDatos" type="button">Añadir datos</button>';
+                } else {
+                    foreach ($datosUsuarioDetalles as $usuarioDetalles) {
+                        // Mostrar los detalles del usuario
+                        echo '<div class="detail"><i class="material-icons">location_on</i> Provincia: <span class="detail-value">' . $usuarioDetalles['provincia'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">public</i> País: <span class="detail-value">' . $usuarioDetalles['pais'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">home</i> Domicilio: <span class="detail-value">' . $usuarioDetalles['domicilio'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">local_post_office</i> Código Postal: <span class="detail-value">' . $usuarioDetalles['codigoPostal'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">location_city</i> Ciudad: <span class="detail-value">' . $usuarioDetalles['ciudad'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">color_lens</i> Color Favorito: <span class="detail-value">' . $usuarioDetalles['colorFavorito'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">restaurant</i> Comida Favorita: <span class="detail-value">' . $usuarioDetalles['comidaFavorita'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">sports_soccer</i> Deporte Favorito: <span class="detail-value">' . $usuarioDetalles['deporteFavorito'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">favorite</i> Hobbie: <span class="detail-value">' . $usuarioDetalles['hobbie'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">face</i> Color Piel: <span class="detail-value">' . $usuarioDetalles['colorPiel'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">height</i> Altura: <span class="detail-value">' . $usuarioDetalles['altura'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">palette</i> Color Pelo: <span class="detail-value">' . $usuarioDetalles['colorPelo'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">style</i> Tatuajes: <span class="detail-value">' . $usuarioDetalles['tatuajes'] . '</span></div>';
+                        echo '<div class="detail"><i class="material-icons">visibility</i> Color Ojos: <span class="detail-value">' . $usuarioDetalles['colorOjos'] . '</span></div>';
+                        echo '<button id="btnModificarDatos" type="button">Modificar datos</button>';
+                    }
+                }
 
-echo '</div>';
-?>
+                echo '</div>';
+                ?>
 
                 <div class="container-datos-modificar" style="display: none;">
                     <form action="../controller/modificarDetalles_Controller.php" method="POST">
@@ -523,73 +587,63 @@ echo '</div>';
                 </div>
                 <div class="container-datos-insertar" style="display: none;">
                     <form action="../controller/insertarDetalles_Controller.php" method="POST">
-                            <!-- Detalles del perfil -->
-                            <div class="detail">
-                                <label for="provincia">Provincia:</label>
-                                <input type="text" id="provincia" name="provincia"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="pais">País:</label>
-                                <input type="text" id="pais" name="pais" value="">
-                            </div>
-                            <div class="detail">
-                                <label for="domicilio">Domicilio:</label>
-                                <input type="text" id="domicilio" name="domicilio"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="codigoPostal">Código Postal:</label>
-                                <input type="text" id="codigoPostal" name="codigoPostal"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="ciudad">Ciudad:</label>
-                                <input type="text" id="ciudad" name="ciudad" value="">
-                            </div>
-                            <div class="detail">
-                                <label for="colorFavorito">Color Favorito:</label>
-                                <input type="text" id="colorFavorito" name="colorFavorito"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="comidaFavorita">Comida Favorita:</label>
-                                <input type="text" id="comidaFavorita" name="comidaFavorita"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="deporteFavorito">Deporte Favorito:</label>
-                                <input type="text" id="deporteFavorito" name="deporteFavorito"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="hobbie">Hobbie:</label>
-                                <input type="text" id="hobbie" name="hobbie" value="">
-                            </div>
-                            <div class="detail">
-                                <label for="colorPiel">Color Piel:</label>
-                                <input type="text" id="colorPiel" name="colorPiel"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="altura">Altura:</label>
-                                <input type="text" id="altura" name="altura" value="">
-                            </div>
-                            <div class="detail">
-                                <label for="colorPelo">Color Pelo:</label>
-                                <input type="text" id="colorPelo" name="colorPelo"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="tatuajes">Tatuajes:</label>
-                                <input type="text" id="tatuajes" name="tatuajes"
-                                    value="">
-                            </div>
-                            <div class="detail">
-                                <label for="colorOjos">Color Ojos:</label>
-                                <input type="text" id="colorOjos" name="colorOjos"
-                                    value="">
-                            </div>
+                        <!-- Detalles del perfil -->
+                        <div class="detail">
+                            <label for="provincia">Provincia:</label>
+                            <input type="text" id="provincia" name="provincia" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="pais">País:</label>
+                            <input type="text" id="pais" name="pais" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="domicilio">Domicilio:</label>
+                            <input type="text" id="domicilio" name="domicilio" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="codigoPostal">Código Postal:</label>
+                            <input type="text" id="codigoPostal" name="codigoPostal" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="ciudad">Ciudad:</label>
+                            <input type="text" id="ciudad" name="ciudad" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="colorFavorito">Color Favorito:</label>
+                            <input type="text" id="colorFavorito" name="colorFavorito" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="comidaFavorita">Comida Favorita:</label>
+                            <input type="text" id="comidaFavorita" name="comidaFavorita" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="deporteFavorito">Deporte Favorito:</label>
+                            <input type="text" id="deporteFavorito" name="deporteFavorito" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="hobbie">Hobbie:</label>
+                            <input type="text" id="hobbie" name="hobbie" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="colorPiel">Color Piel:</label>
+                            <input type="text" id="colorPiel" name="colorPiel" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="altura">Altura:</label>
+                            <input type="text" id="altura" name="altura" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="colorPelo">Color Pelo:</label>
+                            <input type="text" id="colorPelo" name="colorPelo" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="tatuajes">Tatuajes:</label>
+                            <input type="text" id="tatuajes" name="tatuajes" value="">
+                        </div>
+                        <div class="detail">
+                            <label for="colorOjos">Color Ojos:</label>
+                            <input type="text" id="colorOjos" name="colorOjos" value="">
+                        </div>
                         <!-- Botón de envío -->
                         <button type="submit">Guardar cambios</button>
                     </form>
@@ -619,7 +673,7 @@ echo '</div>';
     document.addEventListener('DOMContentLoaded', function () {
         // Función para mostrar el contenedor de modificar datos
         function mostrarModificarDatos() {
-            document.querySelector('.container-datos').style.display = 'none';
+            document.querySelector('.container-datos"').style.display = 'none';
             document.querySelector('.container-datos-modificar').style.display = 'block';
         }
 
@@ -644,12 +698,20 @@ echo '</div>';
         } else {
             console.error('No se encontró el botón btnInsertarDatos');
         }
+
+        function mostrarModificarImagen() {
+            document.querySelector('.btnEditar').style.display = 'none';
+            document.querySelector('.Container-modificarImagen').style.display = 'block';
+        }
+
+        var btnEditar = document.getElementById('btnEditar');
+        btnEditar.addEventListener('click', mostrarModificarImagen);
+
     });
+
+
+
 </script>
-
-
-
-
 
 
 

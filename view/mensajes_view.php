@@ -174,9 +174,18 @@ include ("../controller/main_Controller.php");
             scale: 1.2;
         }
 
-        .parrafo{
+        .parrafo {
             font-family: "Montserrat Alternates", sans-serif;
             padding: 20px;
+        }
+
+        .container-p {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: "Montserrat Alternates", sans-serif;
         }
     </style>
 
@@ -220,9 +229,10 @@ include ("../controller/main_Controller.php");
                 echo '</div>';
                 echo '</div></a>';
             }
-        }
-        else{
-            echo'<p class="parrafo">No hay usuarios con Superlike para enviar mensajes.</p>';
+        } else {
+            echo '<div class="container-p">';
+            echo '<p class="parrafo">No hay usuarios con Superlike para enviar mensajes.</p>';
+            echo '</div>';
         }
 
         ?>
