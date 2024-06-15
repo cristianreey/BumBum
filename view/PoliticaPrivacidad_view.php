@@ -98,7 +98,7 @@ include ("../controller/main_Controller.php");
             text-align: center;
         }
 
-        .container {
+        .container, .container-footer {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -109,6 +109,34 @@ include ("../controller/main_Controller.php");
         .container img {
             width: 150px;
         }
+        .containerMobile{
+           display: none;
+        }
+
+     
+
+        @media (max-width: 992px) {
+            .containerMobile{
+                display:flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .containerMobile ul{
+                display:flex;
+                flex-direction:row;
+            }
+
+            .containerMobile i{
+               font-size: 32px;
+            }
+
+
+            .container-footer{
+            display:none;
+        }
+        }
+
     </style>
 
 </head>
@@ -203,17 +231,29 @@ include ("../controller/main_Controller.php");
     </div>
 
     <footer>
-        <div class="container">
+        <div class="container-footer">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item"><a class="nav-link footer" href="./citas_view.php">CITAS</a></li>
                     <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php">MENSAJES</a></li>
                     <li class="nav-item"><a class="nav-link footer " href="./home_view.php">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link footer active" href="./perfil_view.php">PERFIL</a></li>
-                    <li class="nav-item"><a class="nav-link footer" href="./ajustes_view.php">AJUSTES</a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php">PERFIL</a></li>
+                    <li class="nav-item"><a class="nav-link footer active" href="./ajustes_view.php">AJUSTES</a></li>
                 </ul>
             </nav>
         </div>
+        <div class="containerMobile">
+            <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer active" href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
+                    </ul>
+    </nav>
+            </div>
+           
     </footer>
 
 </body>

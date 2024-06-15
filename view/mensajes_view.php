@@ -30,7 +30,6 @@ include ("../controller/main_Controller.php");
             margin: 0;
         }
 
-
         footer {
             position: fixed;
             bottom: 0;
@@ -50,7 +49,6 @@ include ("../controller/main_Controller.php");
 
         .footer {
             color: white !important;
-
         }
 
         .nav-link {
@@ -62,16 +60,10 @@ include ("../controller/main_Controller.php");
             transform: scale(1.2);
         }
 
-        .nav-link:hover.active {
-            border: 0;
-        }
-
-        .active {
-            border-bottom: 7px solid;
+        .nav-link.active {
+            border-bottom: 7px solid #F2C94C;
             padding-bottom: 2px;
         }
-
-
 
         .header {
             position: fixed;
@@ -81,16 +73,15 @@ include ("../controller/main_Controller.php");
             padding: 10px 0;
             height: 15%;
             z-index: 9999;
-
         }
 
-        .container {
+        .container,
+        .container-footer {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100%;
         }
-
 
         .container img {
             width: 150px;
@@ -105,17 +96,13 @@ include ("../controller/main_Controller.php");
             width: 100%;
         }
 
-
-
         .imagen-container {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             width: 30%;
             margin: 0;
-
         }
-
 
         .button-container {
             position: fixed;
@@ -125,7 +112,6 @@ include ("../controller/main_Controller.php");
             flex-direction: row;
             bottom: 10%;
             width: 100%;
-
         }
 
         .container_mensajes {
@@ -155,7 +141,6 @@ include ("../controller/main_Controller.php");
             border-radius: 50%;
             border: solid 2px black;
             margin-left: 60px;
-
         }
 
         .titulo {
@@ -186,6 +171,31 @@ include ("../controller/main_Controller.php");
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             font-family: "Montserrat Alternates", sans-serif;
+        }
+
+        .containerMobile {
+            display: none;
+        }
+
+        @media (max-width: 992px) {
+            .containerMobile {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .containerMobile ul {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .containerMobile i {
+                font-size: 32px;
+            }
+
+            .container-footer {
+                display: none;
+            }
         }
     </style>
 
@@ -240,18 +250,30 @@ include ("../controller/main_Controller.php");
 
 
         <footer>
-            <div class="container">
+            <div class="container-footer">
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link footer" href="./citas_view.php">CITAS</a></li>
                         <li class="nav-item"><a class="nav-link footer active" href="./mensajes_view.php">MENSAJES</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link footer " href="./home_view.php">HOME</a></li>
-                        <li class="nav-item"><a class="nav-link footer " href="./perfil_view.php">PERFIL</a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php">PERFIL</a></li>
                         <li class="nav-item"><a class="nav-link footer" href="./ajustes_view.php">AJUSTES</a></li>
                     </ul>
                 </nav>
             </div>
+            <div class="containerMobile">
+            <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer active" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
+                    </ul>
+    </nav>
+            </div>
+           
         </footer>
 
 </body>

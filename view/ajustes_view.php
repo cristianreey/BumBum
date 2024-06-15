@@ -93,7 +93,7 @@ include ("../controller/main_Controller.php");
 
         }
 
-        .container {
+        .container, .container-footer {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -102,7 +102,7 @@ include ("../controller/main_Controller.php");
 
 
         .container img {
-            width: 150px;
+            width: 110px;
         }
 
 
@@ -126,6 +126,7 @@ include ("../controller/main_Controller.php");
             align-items: center;
             height: calc(100% - (15% + 10%));
             margin-top: 10%;
+            width: 100%;
         }
 
         .numero-usuarios {
@@ -293,15 +294,17 @@ include ("../controller/main_Controller.php");
             margin-bottom: 100px;
             border: solid black 1px;
             padding: 50px;
+            width: 50%;
 
         }
+
+       
 
         .section-cuenta,
         .section-pantalla,
         .section-notificaciones,
         .section-privacidad {
             text-align: center;
-            width: 100%;
             margin-top: 10px;
         }
 
@@ -395,6 +398,129 @@ include ("../controller/main_Controller.php");
             text-decoration: none;
             color: black;
         }
+
+        .containerMobile{
+           display: none;
+        }
+
+        @media (max-width: 865px) {
+
+            .container-center{
+            margin-top: 14%;
+
+        }
+        }
+
+        @media (max-width: 594px) {
+
+.container-center{
+margin-top: 16%;
+}
+}
+
+@media (max-width: 535px) {
+
+.container-center{
+margin-top: 18%;
+
+}
+}
+
+@media (max-width: 535px) {
+
+.container-center{
+margin-top: 18%;
+
+}
+}
+
+@media (max-width: 435px) {
+
+.container-center{
+margin-top: 22%;
+
+}
+}
+
+@media (max-width: 356px) {
+
+.container-center{
+margin-top: 26%;
+
+}
+
+
+}
+
+@media (max-width: 553px) {
+
+
+    .container-ajustes h4{
+            font-size: 14px;
+        }
+
+        .container-ajustes h5{
+            font-size: 14px;
+
+        }
+
+        .container-ajustes p{
+            font-size: 14px;
+
+        }
+
+}
+@media (max-width:320px) {
+
+
+.container-ajustes h4{
+        font-size: 12px;
+    }
+
+    .container-ajustes h5{
+        font-size: 12px;
+
+    }
+
+    .container-ajustes p{
+        font-size: 12px;
+
+    }
+
+}
+        @media (max-width: 992px) {
+            .containerMobile{
+                display:flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .containerMobile ul{
+                display:flex;
+                flex-direction:row;
+            }
+
+            .containerMobile i{
+               font-size: 32px;
+            }
+
+            .navbar{
+                padding:0;
+            }
+
+            .container-footer{
+            display:none;
+        }
+
+        .container-center h2{
+            font-size:18px;
+        }
+
+        .container-center{
+
+        }
+        }
+
     </style>
 
 </head>
@@ -414,8 +540,8 @@ include ("../controller/main_Controller.php");
                 <hr class="hr">
                 <p onclick="toggleSubseccion('subseccion-cuenta')">VER</p>
                 <div class="subseccion" id="subseccion-cuenta">
-                    <p onclick="mostrarFormularioCambioContrasena()">Cambiar contraseña</p>
-                    <p id="btnEliminarCuenta">Eliminar cuenta</p>
+                    <p onclick="mostrarFormularioCambioContrasena()">Cambiar contraseña</p><br>
+                    <p id="btnEliminarCuenta">Eliminar cuenta</p><br>
                     <a href="../controller/logout.php">
                         <p>Cerrar sesión</p>
                     </a>
@@ -479,7 +605,7 @@ include ("../controller/main_Controller.php");
                 <hr class="hr">
                 <p onclick="toggleSubseccion('subseccion-permitir-notificaciones')">PERMITIR NOTIFICACIONES</p>
                 <div class="subseccion" id="subseccion-permitir-notificaciones">
-                    <p id="permitir" onclick="permitirNotificaciones()">Sí, permitir todas las notificaciones</p>
+                    <p id="permitir" onclick="permitirNotificaciones()">Sí, permitir todas las notificaciones</p><br>
                     <p id="desactivar" onclick="desactivarNotificaciones()">No, desactivar todas las notificaciones</p>
                     <br>
                 </div>
@@ -498,8 +624,8 @@ include ("../controller/main_Controller.php");
 
 
         <footer>
-            <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-footer">
+                <nav class="footer navbar navbar-expand-lg navbar-dark">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link footer" href="./citas_view.php">CITAS</a></li>
                         <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php">MENSAJES</a></li>
@@ -509,7 +635,20 @@ include ("../controller/main_Controller.php");
                         </li>
                     </ul>
                 </nav>
+            
             </div>
+            <div class="containerMobile">
+            <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer active" href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
+                    </ul>
+    </nav>
+            </div>
+           
         </footer>
 
     </div>
