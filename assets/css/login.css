@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Estilos para la capa de color con opacidad */
 .formulario-overlay {
   position: relative;
@@ -36,12 +37,10 @@
   .logoimg {
     display: block;
   }
-
   .portada {
     display: none;
   }
-
   .formulario {
     width: 100%;
   }
-}
+}/*# sourceMappingURL=login.css.map */

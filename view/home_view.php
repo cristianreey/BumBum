@@ -27,327 +27,10 @@ include ("../controller/main_Controller.php");
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/home.css">
 
 
     <style>
-        body {
-            font-family: "Moul", serif;
-        } 
-
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0A203D;
-            color: white;
-            text-align: center;
-            height: 10%;
-            font-weight: 400;
-            font-size: 20px;
-            z-index: 9;
-        }
-
-        footer ul {
-            gap: 30px;
-        }
-
-        .footer {
-            color: white !important;
-
-        }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #F2C94C !important;
-            transform: scale(1.2);
-        }
-
-        .nav-link:hover.active {
-            border: 0;
-        }
-
-        .active {
-            border-bottom: 7px solid;
-            padding-bottom: 2px;
-        }
-
-
-        /* Estilo personalizado para la cabecera */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #EDEEF6;
-            padding: 10px 0;
-            height: 15%;
-            z-index: 9999;
-
-        }
-
-        .container, .container-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .container-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            height: calc(100% - (15% + 10%));
-            padding-bottom: 77px;
-        }
-
-        .container img {
-            width: 150px;
-        }
-
-
-
-        .image-container {
-            flex-grow: 1;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-wrapper img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-
-        }
-
-        .icon-left,
-        .icon-right {
-            font-size: 24px;
-            /* Tamaño de los iconos */
-            vertical-align: middle;
-            /* Alinear verticalmente con el texto */
-        }
-
-        .titulo {
-            display: flex;
-            align-items: center;
-            color: #5C697E;
-            font-size: 30px;
-        }
-
-        .icon-left {
-            margin-right: 5px;
-        }
-
-        .icon-right {
-            margin-left: 5px;
-        }
-
-
-        .button-container button {
-            display: inline-block;
-            margin-right: 10px;
-            padding: 0;
-            background-color: #0A203D;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            margin-bottom: 1%;
-            margin-top: 1%;
-            height: 50px;
-            width: 50px;
-            line-height: 60px;
-        }
-
-        .button-container i.material-icons {
-            font-size: 24px;
-            margin: auto;
-        }
-
-
-
-        .button-container button:hover {
-            background-color: #5C697E;
-            color: #fff;
-        }
-
-        .container-center {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            height: calc(100% - (15% + 10%));
-            margin-top: 10%;
-        }
-
-        .button-container {
-            position: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            bottom: 10%;
-            width: 100%;
-
-        }
-
-        .button-container button:focus {
-            outline: none;
-        }
-
-
-        .info-icon {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: #fff;
-            font-size: 60px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .user-details-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            /* Fondo oscuro semi-transparente */
-            color: #fff;
-            font-size: 16px;
-            padding: 20px;
-            box-sizing: border-box;
-            display: none;
-            z-index: 1;
-            overflow-y: auto;
-            /* Agregar barra de desplazamiento vertical si el contenido excede la altura */
-        }
-
-        .user-details-container p {
-            margin: 0 0 10px;
-            /* Espaciado entre párrafos */
-        }
-
-        .user-details-container p:last-child {
-            margin-bottom: 0;
-            /* Eliminar margen inferior del último párrafo */
-        }
-
-        .user-details-container p strong {
-            color: #ffca28;
-            /* Color para resaltar información importante */
-        }
-
-
-
-
-        /* Estilos para el contenedor del motivo de bloqueo */
-        #motivoBloqueo {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            /* Asegura que el contenedor esté por encima de otros elementos */
-        }
-
-        /* Estilos para el campo de entrada dentro del contenedor */
-        #motivoBloqueo input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        /* Estilos para el botón de enviar dentro del contenedor */
-        #motivoBloqueo button[type="submit"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #0A203D;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-
-        }
-
-        /* Estilos para el botón de cerrar dentro del contenedor */
-        #motivoBloqueo .close-btn {
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            color: #555;
-            cursor: pointer;
-            font-size: 40px;
-
-        }
-
-        .details-container {
-            font-family: "Montserrat Alternates", sans-serif;
-            padding-top: 5%;
-        }
-
-        .detail-value {
-            font-weight: 200;
-        }
-        .containerMobile{
-           display: none;
-        }
-
-     
-
-        @media (max-width: 992px) {
-            .containerMobile{
-                display:flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .containerMobile ul{
-                display:flex;
-                flex-direction:row;
-            }
-
-            .containerMobile i{
-               font-size: 32px;
-            }
-
-
-            .container-footer{
-            display:none;
-        }
-        }
 
     </style>
 
@@ -355,7 +38,7 @@ include ("../controller/main_Controller.php");
 
 <body>
 
-    <div class="header">
+    <div class="header" id="header">
         <div class="container">
             <img src="../assets/img/logoBumBum.png" alt="Logo" class="img-fluid">
         </div>
@@ -379,13 +62,15 @@ include ("../controller/main_Controller.php");
                         include ('../controller/comprobacionImagenes_Controller.php');
 
                         // Verificar relaciones
-                        if (!$existeSuperlike &&
-                            ! $existeDenegados &&
-                            ! $existeBloqueados) {
-                
+                        if (
+                            !$existeSuperlike &&
+                            !$existeDenegados &&
+                            !$existeBloqueados
+                        ) {
+
                             // Añadir idUsuarioImagen a $_SESSION['vistas']
                             $_SESSION['vistas'][] = $idUsuarioImagen;
-                
+
                             // También puedes asignar $_SESSION['idUsuarioImagen'] si es necesario
                             $_SESSION['idUsuarioImagen'] = $idUsuarioImagen;
 
@@ -494,16 +179,21 @@ include ("../controller/main_Controller.php");
         </div>
         <div class="containerMobile">
             <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer active" href="./home_view.php"><i class="material-icons">home</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer " href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
-                    </ul>
-    </nav>
-            </div>
-           
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i
+                                class="material-icons">calendar_today</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i
+                                class="material-icons">message</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer active" href="./home_view.php"><i
+                                class="material-icons">home</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i
+                                class="material-icons">person</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer " href="./ajustes_view.php"><i
+                                class="material-icons">settings</i></a></li>
+                </ul>
+            </nav>
+        </div>
+
     </footer>
 
 </body>
@@ -611,7 +301,15 @@ include ("../controller/main_Controller.php");
         }
     }
 
+    function adjustMarginTop() {
+        var header = document.getElementById('header');
+        var containerCenter = document.querySelector('.container-center');
+        var headerHeight = header.offsetHeight;
+        containerCenter.style.marginTop = (headerHeight + 20) + 'px';
+    }
 
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
 
 </script>
 

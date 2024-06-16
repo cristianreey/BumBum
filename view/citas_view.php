@@ -22,315 +22,11 @@ include ("../controller/main_Controller.php");
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/citas.css">
+
 
 
     <style>
-        body {
-            font-family: "Moul", serif;
-            margin: 0;
-        }
-
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0A203D;
-            color: white;
-            text-align: center;
-            height: 10%;
-            font-weight: 400;
-            font-size: 20px;
-            z-index: 9;
-        }
-
-        footer ul {
-            gap: 30px;
-        }
-
-        .footer {
-            color: white !important;
-
-        }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #F2C94C !important;
-            transform: scale(1.2);
-        }
-
-        .nav-link:hover.active {
-            border: 0;
-        }
-
-        .active {
-            border-bottom: 7px solid;
-            padding-bottom: 2px;
-        }
-
-
-
-
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #EDEEF6;
-            padding: 10px 0;
-            height: 15%;
-            z-index: 9999;
-
-        }
-
-        .container-center {
-            padding: 50px;
-            font-family: "Montserrat Alternates", sans-serif;
-            height: calc(100% - (15% + 10%));
-            margin-top: 5%;
-            margin-bottom: 5%;
-            text-align: justify;
-        }
-
-        .titulo {
-            text-align: center;
-            margin-bottom: 20px;
-            font-family: "Moul", sans-serif;
-
-        }
-
-        .container, .container-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-
-        .container img {
-            width: 150px;
-        }
-
-        /* Estilos para el formulario de filtrado */
-
-
-        .container-center form {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            gap: 20px;
-        }
-
-        .container-center label {
-            margin-top: 10px;
-        }
-
-        .container-center input[type="date"] {
-            padding: 8px;
-            margin: 5px 0;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .container-center input[type="submit"] {
-            background-color: #0A203D;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .container-center input[type="submit"]:hover {
-            background-color: #F2C94C;
-        }
-
-        .fechaInicio,
-        .fechafin {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .btn {
-            background-color: #0A203D;
-            color: white;
-            padding: 15px 20px;
-            border: none;
-            cursor: pointer;
-            opacity: 0.9;
-        }
-
-
-
-        .btn:hover {
-            opacity: 1;
-            color: black;
-            background-color: burlywood;
-        }
-
-        .material-icons {
-            vertical-align: middle;
-        }
-
-        .container-citas {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-family: "Montserrat Alternates", sans-serif;
-        }
-
-        .container-citas p {
-            margin: 10px 0;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .container-citas .cita {
-            padding: 15px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .container-citas .cita:last-child {
-            border-bottom: none;
-        }
-
-        .container-citas .cita-header {
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #0A203D;
-        }
-
-        .container-citas .cita-date {
-            font-size: 14px;
-            color: #666;
-        }
-
-        .container-citas .cita-location {
-            font-size: 14px;
-            color: #999;
-        }
-
-        hr {
-            border: solid #999 1px;
-        }
-
-        .btn-eliminar {
-            background-color: transparent;
-            color: #dc3545;
-            /* Color del icono */
-            border: none;
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .btn-eliminar:hover {
-            color: #c82333;
-            /* Color del icono al pasar el ratón por encima */
-        }
-
-        .btn-comentar {
-
-            background-color: transparent;
-            color: black;
-            /* Color del icono */
-            border: none;
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .btn-comentar:hover {
-            color: #0056b3;
-            /* Color del icono al pasar el ratón por encima */
-        }
-
-        /* Estilos para el contenedor de comentarios */
-        .comentario-container {
-            margin-top: 10px;
-            display: none;
-            /* Por defecto oculto */
-        }
-
-        .comentario-container textarea {
-            width: 100%;
-            height: 100px;
-            margin-bottom: 10px;
-            resize: none;
-            /* Evita que el usuario pueda redimensionar el textarea */
-        }
-
-        .comentario-container .btn-enviar-comentario {
-            background-color: #0A203D;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .comentario-container .btn-enviar-comentario:hover {
-            background-color: #F2C94C;
-        }
-
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .container-citas {
-                padding: 15px;
-            }
-
-            .container-citas p {
-                font-size: 14px;
-            }
-
-            .container-citas .cita {
-                padding: 10px;
-            }
-
-            .container-citas .cita-header {
-                font-size: 16px;
-            }
-
-            .container-citas .cita-date,
-            .container-citas .cita-location {
-                font-size: 12px;
-            }
-        }
-
-        .containerMobile{
-           display: none;
-        }
-
-     
-
-        @media (max-width: 992px) {
-            .containerMobile{
-                display:flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .containerMobile ul{
-                display:flex;
-                flex-direction:row;
-            }
-
-            .containerMobile i{
-               font-size: 32px;
-            }
-
-
-            .container-footer{
-            display:none;
-        }
-        }
 
     </style>
 
@@ -338,7 +34,7 @@ include ("../controller/main_Controller.php");
 
 <body>
 
-    <div class="header">
+    <div class="header" id="header">
         <div class="container">
             <img src="../assets/img/logoBumBum.png" alt="Logo" class="img-fluid">
         </div>
@@ -347,7 +43,7 @@ include ("../controller/main_Controller.php");
         <div class="titulo">
             <h2>ESTAS SON TUS CITAS</h2>
         </div>
-        <div>
+        <div class="formulario">
             <form action="../controller/verCitas_Controller.php" method="POST">
                 <div class="fechaInicio">
                     <label for="fecha_inicio">Fecha de inicio:</label>
@@ -418,16 +114,21 @@ include ("../controller/main_Controller.php");
         </div>
         <div class="containerMobile">
             <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link footer active" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer " href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
-                    </ul>
-    </nav>
-            </div>
-           
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link footer active" href="./citas_view.php"><i
+                                class="material-icons">calendar_today</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i
+                                class="material-icons">message</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i
+                                class="material-icons">home</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i
+                                class="material-icons">person</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer " href="./ajustes_view.php"><i
+                                class="material-icons">settings</i></a></li>
+                </ul>
+            </nav>
+        </div>
+
     </footer>
 
 </body>
@@ -452,6 +153,15 @@ include ("../controller/main_Controller.php");
             });
         });
     });
+    function adjustMarginTop() {
+        var header = document.getElementById('header');
+        var containerCenter = document.querySelector('.container-center');
+        var headerHeight = header.offsetHeight;
+        containerCenter.style.marginTop = (headerHeight + 5) + 'px';
+    }
+
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
 </script>
 
 

@@ -22,364 +22,10 @@ include ("../controller/main_Controller.php");
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/perfil.css">
 
 
     <style>
-        body {
-            font-family: "Moul", serif;
-            margin: 0;
-        }
-
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0A203D;
-            color: white;
-            text-align: center;
-            height: 10%;
-            font-weight: 400;
-            font-size: 20px;
-            z-index: 9;
-        }
-
-        footer ul {
-            gap: 30px;
-        }
-
-        .footer {
-            color: white !important;
-
-        }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #F2C94C !important;
-            transform: scale(1.2);
-        }
-
-        .nav-link:hover.active {
-            border: 0;
-        }
-
-        .active {
-            border-bottom: 7px solid;
-            padding-bottom: 2px;
-        }
-
-        .primera-section {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 30px;
-            width: 100%;
-        }
-
-
-
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #EDEEF6;
-            padding: 10px 0;
-            height: 15%;
-            z-index: 9999;
-
-        }
-
-        .container, .container-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-
-        .container img {
-            width: 150px;
-        }
-
-
-        .imagen-perfil-container {
-            width: 200px;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-            border: solid 2px black;
-            margin-left: 60px;
-
-        }
-
-
-        .container-center {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            height: calc(100% - (15% + 10%));
-            margin-top: 10%;
-        }
-
-        .numero-usuarios {
-            width: 170px;
-            height: 90px;
-            background-color: #EDEEF6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: solid 3px black;
-
-        }
-
-        .numero-usuarios p {
-            font-size: 30px;
-            text-align: center;
-            margin: 0;
-
-        }
-
-        .segunda-section {
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-        }
-
-        .usuarios-superlike,
-        .usuarios-bloqueados,
-        .usuarios-denegados {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-        }
-
-        .texto {
-            text-align: center;
-            margin-top: 10px;
-
-        }
-
-        .container-estadisticas {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            width: 70%;
-            margin-right: 80px;
-        }
-
-        .imagen-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 30%;
-            margin: 0;
-
-
-        }
-
-
-        .space-10 {
-            border: solid 2px #7A7A7A;
-            width: 90%;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .titulo {
-            display: flex;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .details-container {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 90px;
-            background-color: #f9f9f9;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .details-container h2 {
-            margin-top: 0;
-        }
-
-        .detail {
-            margin-bottom: 10px;
-            margin-left: 40px;
-        }
-
-        .detail i {
-            margin-right: 5px;
-        }
-
-        .detail-value {
-            font-weight: bold;
-        }
-
-        .material-icons {
-            vertical-align: middle;
-        }
-
-        /* Estilo para el botón "Modificar datos" */
-        #btnModificarDatos,
-        #btnInsertarDatos {
-            background-color: black;
-            /* Color de fondo verde */
-            color: white;
-            /* Color de texto blanco */
-            border: none;
-            /* Sin borde */
-            padding: 10px 20px;
-            /* Espaciado interno */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            /* Bordes redondeados */
-        }
-
-        #btnModificarDatos:hover {
-            background-color: purple;
-        }
-
-        #btnInsertarDatos:hover {
-            background-color: purple;
-        }
-
-        /* Estilo para el botón "Guardar cambios" */
-        .container-datos-modificar button[type="submit"] {
-            background-color: black;
-            /* Color de fondo azul */
-            color: white;
-            /* Color de texto blanco */
-            border: none;
-            /* Sin borde */
-            padding: 10px 20px;
-            /* Espaciado interno */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            /* Bordes redondeados */
-        }
-
-        .container-datos-insertar button[type="submit"] {
-            background-color: black;
-            /* Color de fondo azul */
-            color: white;
-            /* Color de texto blanco */
-            border: none;
-            /* Sin borde */
-            padding: 10px 20px;
-            /* Espaciado interno */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            /* Bordes redondeados */
-        }
-
-        .container-datos-modificar button[type="submit"]:hover {
-            background-color: purple;
-        }
-
-        .container-datos-insertar button[type="submit"]:hover {
-            background-color: purple;
-        }
-
-
-        .container-datos,
-        .container-datos-modificar,
-        .container-datos-insertar {
-            font-family: "Montserrat Alternates", sans-serif;
-        }
-
-        /* Estilos generales para los formularios */
-        .formulario {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-
-
-        /* Estilo para el input de tipo file */
-        .formulario input[type=file] {
-            margin-bottom: 10px;
-            margin-top: 10px;
-            margin-left: 20px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        /* Estilo para el botón de submit */
-        .formulario input[type=submit] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .formulario input[type=submit]:hover {
-            background-color: #45a049;
-        }
-
-        /* Estilo para los mensajes de error o éxito si los tienes */
-        .formulario .mensaje {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #900;
-            /* Color de mensaje de error */
-        }
-        .containerMobile{
-           display: none;
-        }
-
-     
-
-        @media (max-width: 992px) {
-            .containerMobile{
-                display:flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .containerMobile ul{
-                display:flex;
-                flex-direction:row;
-            }
-
-            .containerMobile i{
-               font-size: 32px;
-            }
-
-
-            .container-footer{
-            display:none;
-        }
-        }
 
     </style>
 
@@ -387,7 +33,7 @@ include ("../controller/main_Controller.php");
 
 <body>
 
-    <div class="header">
+    <div class="header" id="header">
         <div class="container">
             <img src="../assets/img/logoBumBum.png" alt="Logo" class="img-fluid">
         </div>
@@ -696,16 +342,21 @@ include ("../controller/main_Controller.php");
         </div>
         <div class="containerMobile">
             <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer active" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer " href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
-                    </ul>
-    </nav>
-            </div>
-           
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i
+                                class="material-icons">calendar_today</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i
+                                class="material-icons">message</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i
+                                class="material-icons">home</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer active" href="./perfil_view.php"><i
+                                class="material-icons">person</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer " href="./ajustes_view.php"><i
+                                class="material-icons">settings</i></a></li>
+                </ul>
+            </nav>
+        </div>
+
     </footer>
 
 </body>
@@ -713,7 +364,7 @@ include ("../controller/main_Controller.php");
     document.addEventListener('DOMContentLoaded', function () {
         // Función para mostrar el contenedor de modificar datos
         function mostrarModificarDatos() {
-            document.querySelector('.container-datos"').style.display = 'none';
+            document.querySelector('.container-datos').style.display = 'none';
             document.querySelector('.container-datos-modificar').style.display = 'block';
         }
 
@@ -749,7 +400,15 @@ include ("../controller/main_Controller.php");
 
     });
 
+    function adjustMarginTop() {
+        var header = document.getElementById('header');
+        var containerCenter = document.querySelector('.container-center');
+        var headerHeight = header.offsetHeight;
+        containerCenter.style.marginTop = (headerHeight + 20) + 'px';
+    }
 
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
 
 </script>
 

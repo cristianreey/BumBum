@@ -22,378 +22,13 @@ include ("../controller/main_Controller.php");
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/conversacion.css">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
     <style>
-        body {
-            font-family: "Moul", serif;
-            margin: 0;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0A203D;
-            color: white;
-            text-align: center;
-            height: 10%;
-            font-weight: 400;
-            font-size: 20px;
-            z-index: 9;
-        }
-
-        footer ul {
-            gap: 30px;
-        }
-
-        .footer {
-            color: white !important;
-        }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #F2C94C !important;
-            transform: scale(1.2);
-        }
-
-        .nav-link:hover.active {
-            border: 0;
-        }
-
-        .active {
-            border-bottom: 7px solid;
-            padding-bottom: 2px;
-        }
-
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #EDEEF6;
-            padding: 10px 0;
-            height: 15%;
-            z-index: 9999;
-        }
-
-        .container, .container-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .container img {
-            width: 150px;
-        }
-
-        .container-center {
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            height: calc(100% - (15% + 10%));
-            margin-top: 7%;
-            width: 100%;
-        }
-
-        .imagen-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            width: 30%;
-            float: left;
-        }
-
-        .nombre {
-            overflow: hidden;
-            font-size: 20px;
-        }
-
-        .button-container {
-            position: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            bottom: 10%;
-            width: 100%;
-        }
-
-        .container_mensajes {
-            padding: 5px;
-            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            vertical-align: center;
-            margin-bottom: 10px;
-            position: fixed;
-            width: 100%;
-            margin-top: 0;
-            z-index: 99999;
-            background-color: white;
-        }
-
-        .imagen-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 17%;
-            margin: 0;
-            float: left;
-        }
-
-        .imagen-perfil-container {
-            width: 100px;
-            height: 100px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-            border: solid 2px black;
-            margin-left: 60px;
-        }
-
-        .titulo {
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-        }
-
-        a,
-        a:hover {
-            text-decoration: none;
-            color: #0A203D
-        }
-
-        a:hover .nombre {
-            scale: 1.2;
-        }
-
-        .button-enviar {
-            position: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            bottom: 10%;
-            width: 100%;
-            padding: 2px;
-            background-color: white;
-        }
-
-        input[type="text"] {
-            padding: 10px;
-            margin-bottom: 10px;
-            width: 500px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            padding: 10px 20px;
-            background-color: black;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: purple;
-        }
-
-        .mensajes {
-            display: flex;
-            flex-direction: column;
-            margin: 10px;
-            margin-top: 10%;
-            padding-bottom: 10%;
-            z-index: 0;
-        }
-
-        .mensaje-usuarioEnvia {
-            justify-content: center;
-            background-color: #0A203D;
-            padding: 15px;
-            align-items: center;
-            color: white;
-            border-radius: 20px 20px;
-            align-self: flex-end;
-            max-width: 70%;
-            margin-bottom: 10px;
-        }
-
-        .mensaje-usuarioRecibe {
-            justify-content: flex-start;
-            background-color: #EDEEF6;
-            color: black;
-            align-items: center;
-            border-radius: 20px 20px;
-            align-self: flex-start;
-            max-width: 70%;
-            margin-bottom: 10px;
-            padding: 15px;
-        }
-
-        p {
-            margin-top: 1rem;
-        }
-
-        .botones {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            position: absolute;
-            right: 10px;
-        }
-
-        .boton {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 20px;
-            background-color: black;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-
-        .boton-volver,
-        .boton-cita {
-            background-color: black;
-        }
-
-        .boton:hover i {
-            color: purple;
-        }
-
-        .modal {
-            position: relative;
-            z-index: 9999;
-            margin-bottom: 50%;
-        }
-
-        #ubicacionCita {
-            width: 100%;
-        }
-
-        .sugerencia {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .sugerencia:hover {
-            background-color: antiquewhite;
-        }
-
-        .boton-solicitar {
-            background-color: black;
-            color: white;
-        }
-
-        .boton-solicitar:hover {
-            background-color: purple;
-            color: white;
-
-        }
-
-        .modal {
-            position: fixed;
-            top: 75%;
-            /* Posiciona el modal en el centro verticalmente */
-            left: 50%;
-            /* Posiciona el modal en el centro horizontalmente */
-            transform: translate(-50%, -50%);
-            /* Centra el modal exactamente */
-            z-index: 99999;
-            /* Asegura que el modal esté por encima del resto del contenido */
-        }
-
-        .modal-dialog {
-            max-width: 90%;
-            /* Ajusta el ancho máximo del modal */
-        }
-
-        .modal-content {
-            border-radius: 20px;
-            /* Añade bordes redondeados al modal */
-        }
-
-        .modal-header {
-            border-bottom: none;
-            /* Elimina el borde inferior del encabezado del modal */
-        }
-
-        .modal-body {
-            padding: 20px;
-            /* Añade espacio interno al cuerpo del modal */
-        }
-
-        .modal-footer {
-            border-top: none;
-            /* Elimina el borde superior del pie de página del modal */
-        }
-
-        #sugerenciasUbicacion {
-            position: absolute;
-            z-index: 9999;
-            background-color: white;
-            border: 1px solid #ccc;
-            width: calc(100% - 20px);
-            /* Ajusta el ancho de las sugerencias */
-            max-height: 200px;
-            /* Establece una altura máxima para las sugerencias */
-            overflow-y: auto;
-            /* Añade desplazamiento vertical si es necesario */
-        }
-
-        .sugerencia {
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .sugerencia:hover {
-            background-color: #f0f0f0;
-            /* Cambia el color de fondo al pasar el cursor */
-        }
-        .containerMobile{
-           display: none;
-        }
-
-     
-
-        @media (max-width: 992px) {
-            .containerMobile{
-                display:flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .containerMobile ul{
-                display:flex;
-                flex-direction:row;
-            }
-
-            .containerMobile i{
-               font-size: 32px;
-            }
-
-
-            .container-footer{
-            display:none;
-        }
-        }
 
     </style>
 
@@ -401,7 +36,7 @@ include ("../controller/main_Controller.php");
 
 <body>
 
-    <div class="header">
+    <div class="header" id="header">
         <div class="container">
             <img src="../assets/img/logoBumBum.png" alt="Logo" class="img-fluid">
         </div>
@@ -414,7 +49,7 @@ include ("../controller/main_Controller.php");
             include ("../controller/ImagenesUsuarioMensajes_Controller.php");
             ?>
 
-            <div class="container_mensajes">
+            <div class="container_mensajes" id="container-mensajes">
                 <div class="imagen-container">
                     <?php
                     if (isset($datosImagenesPerfil) && !empty($datosImagenesPerfil)) {
@@ -444,7 +79,7 @@ include ("../controller/main_Controller.php");
             </div>
         </div>
 
-        <div class="mensajes">
+        <div class="mensajes" id="mensajes">
             <?php
             include ("../controller/verMensajes_Controller.php");
 
@@ -472,7 +107,9 @@ include ("../controller/main_Controller.php");
         <div class="button-enviar">
             <form action="../controller/EnviarMensajes_Controller.php" method="POST">
                 <input type="text" name="mensaje" placeholder="Escribe tu mensaje aquí" required>
-                <input type="submit" value="Enviar">
+                <button type="submit" class="boton-enviar">
+                    <i class="material-icons">send</i>
+                </button>
             </form>
         </div>
 
@@ -507,7 +144,7 @@ include ("../controller/main_Controller.php");
         </div>
     </div>
 
-    <footer>
+    <footer id="footer">
         <div class="container-footer">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <ul class="navbar-nav mr-auto">
@@ -522,16 +159,21 @@ include ("../controller/main_Controller.php");
         </div>
         <div class="containerMobile">
             <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer active" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
-                    </ul>
-    </nav>
-            </div>
-           
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i
+                                class="material-icons">calendar_today</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer active" href="./mensajes_view.php"><i
+                                class="material-icons">message</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i
+                                class="material-icons">home</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i
+                                class="material-icons">person</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./ajustes_view.php"><i
+                                class="material-icons">settings</i></a></li>
+                </ul>
+            </nav>
+        </div>
+
     </footer>
 
 </body>
@@ -544,7 +186,7 @@ include ("../controller/main_Controller.php");
         input.addEventListener('input', function () {
             const query = input.value;
             if (query.trim() === '') {
-                sugerenciasUbicacion.innerHTML = ''; // Limpiar sugerencias si el campo está vacío
+                sugerenciasUbicacion.innerHTML = '';
                 return;
             }
 
@@ -571,12 +213,44 @@ include ("../controller/main_Controller.php");
                 });
         });
     });
+    function adjustMarginTop() {
+        var header = document.getElementById('header');
+        var containerCenter = document.querySelector('.container-center');
+        var headerHeight = header.offsetHeight;
+        containerCenter.style.marginTop = headerHeight + 'px';
+    }
+
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
+
+    function adjustMarginTopMensajes() {
+        var header = document.getElementById('header');
+        var containerMensajes = document.getElementById('container-mensajes');
+        var containerCenter = document.querySelector('.mensajes');
+        var headerHeight = header.offsetHeight;
+        var containerMensajesHeight = containerMensajes.offsetHeight;
+        containerCenter.style.marginTop = (headerHeight) + 'px';
+    }
+
+    window.addEventListener('resize', adjustMarginTopMensajes);
+    window.addEventListener('load', adjustMarginTopMensajes);
+
+    function adjustMarginBottomMensajes() {
+        var footer = document.getElementById('footer');
+        var buttonEnviar = document.querySelector('.button-enviar');
+        var containerMensajes = document.querySelector('.mensajes');
+        var footerHeight = footer.offsetHeight;
+        var buttonEnviarHeight = buttonEnviar.offsetHeight;
+
+        var marginBottom = footerHeight + buttonEnviarHeight;
+
+        // Aplicar el margen inferior al contenedor de mensajes
+        containerMensajes.style.marginBottom = marginBottom + 'px';
+    }
+
+    window.addEventListener('resize', adjustMarginBottomMensajes);
+    window.addEventListener('load', adjustMarginBottomMensajes);
+
 </script>
-
-
-
-
-
-
 
 </html>

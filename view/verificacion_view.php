@@ -6,38 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="../assets/scss/estilo.css">
+    <link rel="stylesheet" href="../assets/css/verificacion.css">
+    <link rel="stylesheet" href="../assets/css/estilo.css">
+
+
     <title>Verificación | BumBum</title>
     <style>
-        /* Estilos para la capa de color con opacidad */
-        .formulario-overlay {
-            position: relative;
-            top: 0;
-            right: 50px;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
 
-        }
-
-        /* Estilos para la imagen */
-        .formulario-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-
-        }
-
-        /* Ajusta el formulario para que esté encima de la capa de color */
-        .container-form {
-            position: relative;
-            z-index: 2;
-
-        }
     </style>
 </head>
 
@@ -64,6 +39,7 @@
         <div class="container-form">
             <form class="login-form" action="../controller/verificacion_Controller.php" method="POST"
                 onsubmit="eliminarEspacios()">
+                <img class="logoimg" src="../assets/img/logoBumBum.png" alt="">
                 <h3 class="titulo-formulario">Introduce tu código de verificación</h3>
                 <input type="text" id="cod_verificacion" name="cod_verificacion" placeholder="Código de verificación"
                     required><br><br>

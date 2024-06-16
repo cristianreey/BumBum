@@ -22,188 +22,19 @@ include ("../controller/main_Controller.php");
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/mensajes.css">
+
 
 
     <style>
-        body {
-            font-family: "Moul", serif;
-            margin: 0;
-        }
 
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0A203D;
-            color: white;
-            text-align: center;
-            height: 10%;
-            font-weight: 400;
-            font-size: 20px;
-            z-index: 9;
-        }
-
-        footer ul {
-            gap: 30px;
-        }
-
-        .footer {
-            color: white !important;
-        }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #F2C94C !important;
-            transform: scale(1.2);
-        }
-
-        .nav-link.active {
-            border-bottom: 7px solid #F2C94C;
-            padding-bottom: 2px;
-        }
-
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #EDEEF6;
-            padding: 10px 0;
-            height: 15%;
-            z-index: 9999;
-        }
-
-        .container,
-        .container-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .container img {
-            width: 150px;
-        }
-
-        .container-center {
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            height: calc(100% - (15% + 10%));
-            margin-top: 10%;
-            width: 100%;
-        }
-
-        .imagen-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 30%;
-            margin: 0;
-        }
-
-        .button-container {
-            position: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            bottom: 10%;
-            width: 100%;
-        }
-
-        .container_mensajes {
-            padding: 20px;
-            background-color: #f9f9f9;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .imagen-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 17%;
-            margin: 0;
-        }
-
-        .imagen-perfil-container {
-            width: 100px;
-            height: 100px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-            border: solid 2px black;
-            margin-left: 60px;
-        }
-
-        .titulo {
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-        }
-
-        a,
-        a:hover {
-            text-decoration: none;
-            color: #0A203D
-        }
-
-        a:hover .nombre {
-            scale: 1.2;
-        }
-
-        .parrafo {
-            font-family: "Montserrat Alternates", sans-serif;
-            padding: 20px;
-        }
-
-        .container-p {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-family: "Montserrat Alternates", sans-serif;
-        }
-
-        .containerMobile {
-            display: none;
-        }
-
-        @media (max-width: 992px) {
-            .containerMobile {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .containerMobile ul {
-                display: flex;
-                flex-direction: row;
-            }
-
-            .containerMobile i {
-                font-size: 32px;
-            }
-
-            .container-footer {
-                display: none;
-            }
-        }
     </style>
 
 </head>
 
 <body>
 
-    <div class="header">
+    <div class="header" id="header">
         <div class="container">
             <img src="../assets/img/logoBumBum.png" alt="Logo" class="img-fluid">
         </div>
@@ -263,22 +94,35 @@ include ("../controller/main_Controller.php");
                 </nav>
             </div>
             <div class="containerMobile">
-            <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
+                <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer active" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i
+                                    class="material-icons">calendar_today</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer active" href="./mensajes_view.php"><i
+                                    class="material-icons">message</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i
+                                    class="material-icons">home</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i
+                                    class="material-icons">person</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./ajustes_view.php"><i
+                                    class="material-icons">settings</i></a></li>
                     </ul>
-    </nav>
+                </nav>
             </div>
-           
+
         </footer>
 
 </body>
 <script>
+    function adjustMarginTop() {
+        var header = document.getElementById('header');
+        var containerCenter = document.querySelector('.container-center');
+        var headerHeight = header.offsetHeight;
+        containerCenter.style.marginTop = (headerHeight + 20) + 'px';
+    }
 
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
 </script>
 
 

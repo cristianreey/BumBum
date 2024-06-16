@@ -16,517 +16,22 @@ include ("../controller/main_Controller.php");
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/ajustes.css">
 
 
     <style>
-        body {
-            font-family: "Moul", serif;
-            margin: 0;
-            background-color: white;
-        }
-
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0A203D;
-            color: white;
-            text-align: center;
-            height: 10%;
-            font-weight: 400;
-            font-size: 20px;
-            z-index: 9;
-        }
-
-        footer ul {
-            gap: 30px;
-        }
-
-        .footer {
-            color: white !important;
-
-        }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #F2C94C !important;
-            transform: scale(1.2);
-        }
-
-        .nav-link:hover.active {
-            border: 0;
-        }
-
-        .active {
-            border-bottom: 7px solid;
-            padding-bottom: 2px;
-        }
-
-        .primera-section {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 30px;
-            width: 100%;
-        }
-
-
-
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #EDEEF6;
-            padding: 10px 0;
-            height: 15%;
-            z-index: 9999;
-
-        }
-
-        .container, .container-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-
-        .container img {
-            width: 110px;
-        }
-
-
-        .imagen-perfil-container {
-            width: 200px;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 50%;
-            border: solid 2px black;
-            margin-left: 60px;
-
-        }
-
-
-        .container-center {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            height: calc(100% - (15% + 10%));
-            margin-top: 10%;
-            width: 100%;
-        }
-
-        .numero-usuarios {
-            width: 170px;
-            height: 90px;
-            background-color: #EDEEF6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: solid 3px black;
-
-        }
-
-        .numero-usuarios p {
-            font-size: 30px;
-            text-align: center;
-            margin: 0;
-
-        }
-
-        .segunda-section {
-            display: flex;
-            flex-direction: column;
-            width: 90%;
-        }
-
-        .usuarios-superlike,
-        .usuarios-bloqueados,
-        .usuarios-denegados {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-        }
-
-        .texto {
-            text-align: center;
-            margin-top: 10px;
-
-        }
-
-        .container-estadisticas {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            width: 70%;
-            margin-right: 80px;
-        }
-
-        .imagen-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 30%;
-            margin: 0;
-
-
-        }
-
-
-        .space-10 {
-            border: solid 2px #7A7A7A;
-            width: 90%;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .titulo {
-            display: flex;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .details-container {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 90px;
-            background-color: #f9f9f9;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .details-container h2 {
-            margin-top: 0;
-        }
-
-        .detail {
-            margin-bottom: 10px;
-            margin-left: 40px;
-        }
-
-        .detail i {
-            margin-right: 5px;
-        }
-
-        .detail-value {
-            font-weight: bold;
-        }
-
-        .material-icons {
-            vertical-align: middle;
-        }
-
-        /* Estilo para el botón "Modificar datos" */
-        #btnModificarDatos {
-            background-color: black;
-            /* Color de fondo verde */
-            color: white;
-            /* Color de texto blanco */
-            border: none;
-            /* Sin borde */
-            padding: 10px 20px;
-            /* Espaciado interno */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            /* Bordes redondeados */
-        }
-
-        #btnModificarDatos:hover {
-            background-color: purple;
-        }
-
-        /* Estilo para el botón "Guardar cambios" */
-        .container-datos-modificar button[type="submit"] {
-            background-color: black;
-            /* Color de fondo azul */
-            color: white;
-            /* Color de texto blanco */
-            border: none;
-            /* Sin borde */
-            padding: 10px 20px;
-            /* Espaciado interno */
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            /* Bordes redondeados */
-        }
-
-        .container-datos-modificar button[type="submit"]:hover {
-            background-color: purple;
-        }
-
-        .container-datos,
-        .container-datos-modificar {
-            font-family: "Montserrat Alternates", sans-serif;
-        }
-
-        .container-ajustes {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: "Montserrat Alternates", sans-serif;
-            background-color: #EDEEF6;
-            margin-bottom: 100px;
-            border: solid black 1px;
-            padding: 50px;
-            width: 50%;
-
-        }
-
-       
-
-        .section-cuenta,
-        .section-pantalla,
-        .section-notificaciones,
-        .section-privacidad {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .section-cuenta p:hover,
-        .section-pantalla p:hover,
-        .section-notificaciones p:hover,
-        .section-privacidad p:hover {
-            color: #0A203D;
-            font-weight: bold;
-        }
-
-        h4 {
-            font-weight: bold;
-        }
-
-        .hr {
-            border: solid #7A7A7A 1px;
-            width: 90%;
-        }
-
-        .subseccion {
-            display: none;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .subseccion p {
-            margin: 0;
-
-        }
-
-        p {
-            user-select: none;
-            cursor: default;
-        }
-
-        .password-input-container {
-            position: relative;
-        }
-
-        .toggle-password-btn {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            font-size: 20px;
-            color: #555;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .toggle-password-btn:focus {
-            outline: none;
-        }
-
-        .toggle-password-btn i {
-            pointer-events: none;
-        }
-
-
-        .toggle-password-btn i {
-            font-size: inherit;
-        }
-
-        #confirmar_contrasena,
-        #contrasena {
-            width: 90%;
-        }
-
-        .swal2-title.text-black {
-            color: #0A203D !important;
-        }
-
-        .swal2-content.text-black {
-            color: black !important;
-        }
-
-        #actividad-reciente-container {
-            background-color: azure;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        a:hover {
-            text-decoration: none;
-            color: black;
-        }
-
-        .containerMobile{
-           display: none;
-        }
-
-        @media (max-width: 865px) {
-
-            .container-center{
-            margin-top: 14%;
-
-        }
-        }
-
-        @media (max-width: 594px) {
-
-.container-center{
-margin-top: 16%;
-}
-}
-
-@media (max-width: 535px) {
-
-.container-center{
-margin-top: 18%;
-
-}
-}
-
-@media (max-width: 535px) {
-
-.container-center{
-margin-top: 18%;
-
-}
-}
-
-@media (max-width: 435px) {
-
-.container-center{
-margin-top: 22%;
-
-}
-}
-
-@media (max-width: 356px) {
-
-.container-center{
-margin-top: 26%;
-
-}
-
-
-}
-
-@media (max-width: 553px) {
-
-
-    .container-ajustes h4{
-            font-size: 14px;
-        }
-
-        .container-ajustes h5{
-            font-size: 14px;
-
-        }
-
-        .container-ajustes p{
-            font-size: 14px;
-
-        }
-
-}
-@media (max-width:320px) {
-
-
-.container-ajustes h4{
-        font-size: 12px;
-    }
-
-    .container-ajustes h5{
-        font-size: 12px;
-
-    }
-
-    .container-ajustes p{
-        font-size: 12px;
-
-    }
-
-}
-        @media (max-width: 992px) {
-            .containerMobile{
-                display:flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .containerMobile ul{
-                display:flex;
-                flex-direction:row;
-            }
-
-            .containerMobile i{
-               font-size: 32px;
-            }
-
-            .navbar{
-                padding:0;
-            }
-
-            .container-footer{
-            display:none;
-        }
-
-        .container-center h2{
-            font-size:18px;
-        }
-
-        .container-center{
-
-        }
-        }
 
     </style>
 
 </head>
 
 <body>
-    <div class="header">
+    <div class="header" id="header">
         <div class="container">
             <img src="../assets/img/logoBumBum.png" alt="Logo" class="img-fluid">
         </div>
@@ -635,20 +140,25 @@ margin-top: 26%;
                         </li>
                     </ul>
                 </nav>
-            
+
             </div>
             <div class="containerMobile">
-            <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
+                <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer active" href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i
+                                    class="material-icons">calendar_today</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i
+                                    class="material-icons">message</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i
+                                    class="material-icons">home</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i
+                                    class="material-icons">person</i></a></li>
+                        <li class="nav-item"><a class="nav-link footer active" href="./ajustes_view.php"><i
+                                    class="material-icons">settings</i></a></li>
                     </ul>
-    </nav>
+                </nav>
             </div>
-           
+
         </footer>
 
     </div>
@@ -807,6 +317,15 @@ margin-top: 26%;
         }
     });
 
+    function adjustMarginTop() {
+        var header = document.getElementById('header');
+        var containerCenter = document.querySelector('.container-center');
+        var headerHeight = header.offsetHeight;
+        containerCenter.style.marginTop = (headerHeight + 20) + 'px';
+    }
+
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
 
 
 

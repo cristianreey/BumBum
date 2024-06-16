@@ -22,120 +22,10 @@ include ("../controller/main_Controller.php");
         rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/PoliticaPrivacidad.css">
 
 
     <style>
-        body {
-            font-family: "Moul", serif;
-            margin: 0;
-        }
-
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #0A203D;
-            color: white;
-            text-align: center;
-            height: 10%;
-            font-weight: 400;
-            font-size: 20px;
-            z-index: 9;
-        }
-
-        footer ul {
-            gap: 30px;
-        }
-
-        .footer {
-            color: white !important;
-
-        }
-
-        .nav-link {
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #F2C94C !important;
-            transform: scale(1.2);
-        }
-
-        .nav-link:hover.active {
-            border: 0;
-        }
-
-        .active {
-            border-bottom: 7px solid;
-            padding-bottom: 2px;
-        }
-
-
-
-
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: #EDEEF6;
-            padding: 10px 0;
-            height: 15%;
-            z-index: 9999;
-
-        }
-
-        .container-center {
-            padding: 50px;
-            font-family: "Montserrat Alternates", sans-serif;
-            height: calc(100% - (15% + 10%));
-            margin-top: 5%;
-            margin-bottom: 5%;
-            text-align: justify;
-        }
-
-        .titulo {
-            text-align: center;
-        }
-
-        .container, .container-footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-
-        .container img {
-            width: 150px;
-        }
-        .containerMobile{
-           display: none;
-        }
-
-     
-
-        @media (max-width: 992px) {
-            .containerMobile{
-                display:flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .containerMobile ul{
-                display:flex;
-                flex-direction:row;
-            }
-
-            .containerMobile i{
-               font-size: 32px;
-            }
-
-
-            .container-footer{
-            display:none;
-        }
-        }
 
     </style>
 
@@ -143,7 +33,7 @@ include ("../controller/main_Controller.php");
 
 <body>
 
-    <div class="header">
+    <div class="header" id="header">
         <div class="container">
             <img src="../assets/img/logoBumBum.png" alt="Logo" class="img-fluid">
         </div>
@@ -244,19 +134,35 @@ include ("../controller/main_Controller.php");
         </div>
         <div class="containerMobile">
             <nav class="footerMobile navbar navbar-expand-lg navbar-dark">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i class="material-icons">calendar_today</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i class="material-icons">message</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i class="material-icons">home</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i class="material-icons">person</i></a></li>
-                        <li class="nav-item"><a class="nav-link footer active" href="./ajustes_view.php"><i class="material-icons">settings</i></a></li>
-                    </ul>
-    </nav>
-            </div>
-           
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link footer" href="./citas_view.php"><i
+                                class="material-icons">calendar_today</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./mensajes_view.php"><i
+                                class="material-icons">message</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./home_view.php"><i
+                                class="material-icons">home</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer" href="./perfil_view.php"><i
+                                class="material-icons">person</i></a></li>
+                    <li class="nav-item"><a class="nav-link footer active" href="./ajustes_view.php"><i
+                                class="material-icons">settings</i></a></li>
+                </ul>
+            </nav>
+        </div>
+
     </footer>
 
 </body>
+<script>
+    function adjustMarginTop() {
+        var header = document.getElementById('header');
+        var containerCenter = document.querySelector('.container-center');
+        var headerHeight = header.offsetHeight;
+        containerCenter.style.marginTop = headerHeight + 'px';
+    }
+
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
+</script>
 
 
 </html>

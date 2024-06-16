@@ -24,4 +24,23 @@
 .container-form {
   position: relative;
   z-index: 2;
-}/*# sourceMappingURL=formulario.css.map */
+}
+
+.logoimg {
+  display: none;
+  width: 150px;
+  left: 50%;
+  transform: translateX(25%);
+}
+
+@media (max-width: 700px) {
+  .logoimg {
+    display: block;
+  }
+  .portada {
+    display: none;
+  }
+  .formulario {
+    width: 100%;
+  }
+}/*# sourceMappingURL=verificacion.css.map */

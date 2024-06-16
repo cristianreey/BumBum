@@ -1,0 +1,448 @@
+@charset "UTF-8";
+body {
+  font-family: "Moul", serif;
+  margin: 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #0a203d;
+  color: white;
+  text-align: center;
+  height: 10%;
+  font-weight: 400;
+  font-size: 20px;
+  z-index: 9;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+footer ul {
+  gap: 30px;
+}
+
+.footer {
+  color: white !important;
+}
+
+.nav-link {
+  transition: color 0.3s, transform 0.3s;
+}
+
+.nav-link:hover {
+  color: #f2c94c !important;
+  transform: scale(1.2);
+}
+
+.nav-link:hover.active {
+  border: 0;
+}
+
+.active {
+  border-bottom: 7px solid;
+  padding-bottom: 2px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #edeef6;
+  padding: 10px 0;
+  height: 15%;
+  z-index: 9999;
+}
+
+.container,
+.container-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container img {
+  width: 150px;
+}
+
+.container-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  height: 75%;
+  margin-top: 7%;
+  width: 100%;
+}
+
+.imagen-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 30%;
+  float: left;
+}
+
+.nombre {
+  overflow: hidden;
+  font-size: 20px;
+}
+
+.button-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  bottom: 10%;
+  width: 100%;
+}
+
+.container_mensajes {
+  padding: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: center;
+  margin-bottom: 10px;
+  position: fixed;
+  width: 100%;
+  margin-top: 0;
+  z-index: 99999;
+  background-color: white;
+  gap: 10px;
+}
+
+.imagen-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0;
+  width: 100px;
+}
+
+.imagen-perfil-container {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  border: solid 2px black;
+}
+
+.titulo {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: #0a203d;
+}
+
+a:hover .nombre {
+  scale: 1.2;
+}
+
+.button-enviar {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  bottom: 10%;
+  width: 100%;
+  padding: 2px;
+  background-color: white;
+}
+
+input[type=text] {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 500px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type=submit] {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: purple;
+}
+
+.mensajes {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  margin-top: 10%;
+  z-index: 0;
+}
+
+.mensaje-usuarioEnvia {
+  justify-content: center;
+  background-color: #0a203d;
+  padding: 15px;
+  align-items: center;
+  color: white;
+  border-radius: 20px 20px;
+  align-self: flex-end;
+  max-width: 70%;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  /* Romper palabras largas */
+  word-break: break-word;
+  /* Romper palabras en caracteres especiales */
+}
+
+.mensaje-usuarioRecibe {
+  justify-content: flex-start;
+  background-color: #edeef6;
+  color: black;
+  align-items: center;
+  border-radius: 20px 20px;
+  align-self: flex-start;
+  max-width: 70%;
+  margin-bottom: 10px;
+  padding: 15px;
+  word-wrap: break-word;
+  /* Romper palabras largas */
+  word-break: break-word;
+  /* Romper palabras en caracteres especiales */
+}
+
+p {
+  margin-top: 1rem;
+}
+
+.botones {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  position: absolute;
+  right: 10px;
+}
+
+.boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.boton-volver,
+.boton-cita {
+  background-color: black;
+}
+
+.boton:hover i {
+  color: purple;
+}
+
+.modal {
+  position: relative;
+  z-index: 9999;
+  margin-bottom: 50%;
+}
+
+#ubicacionCita {
+  width: 100%;
+}
+
+.sugerencia {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.sugerencia:hover {
+  background-color: antiquewhite;
+}
+
+.boton-solicitar {
+  background-color: black;
+  color: white;
+}
+
+.boton-solicitar:hover {
+  background-color: purple;
+  color: white;
+}
+
+.modal {
+  position: fixed;
+  top: 75%;
+  /* Posiciona el modal en el centro verticalmente */
+  left: 50%;
+  /* Posiciona el modal en el centro horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Centra el modal exactamente */
+  z-index: 99999;
+  /* Asegura que el modal esté por encima del resto del contenido */
+}
+
+.modal-dialog {
+  max-width: 90%;
+  /* Ajusta el ancho máximo del modal */
+}
+
+.modal-content {
+  border-radius: 20px;
+  /* Añade bordes redondeados al modal */
+}
+
+.modal-header {
+  border-bottom: none;
+  /* Elimina el borde inferior del encabezado del modal */
+}
+
+.modal-body {
+  padding: 20px;
+  /* Añade espacio interno al cuerpo del modal */
+}
+
+.modal-footer {
+  border-top: none;
+  /* Elimina el borde superior del pie de página del modal */
+}
+
+#sugerenciasUbicacion {
+  position: absolute;
+  z-index: 9999;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: calc(100% - 20px);
+  /* Ajusta el ancho de las sugerencias */
+  max-height: 200px;
+  /* Establece una altura máxima para las sugerencias */
+  overflow-y: auto;
+  /* Añade desplazamiento vertical si es necesario */
+}
+
+.sugerencia {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugerencia:hover {
+  background-color: #f0f0f0;
+  /* Cambia el color de fondo al pasar el cursor */
+}
+
+.containerMobile {
+  display: none;
+}
+
+.button-enviar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  position: fixed;
+  bottom: 10%;
+  width: 100%;
+  background-color: white;
+  z-index: 999;
+}
+
+.button-enviar form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input[type=text] {
+  flex: 1;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-width: 90%;
+}
+
+input[type=submit] {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: purple;
+}
+
+.boton-enviar {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #000;
+}
+
+.boton-enviar:hover {
+  color: purple;
+  /* Cambio de color al hacer hover */
+}
+
+@media (max-width: 522px) {
+  .button-enviar {
+    gap: 30px;
+  }
+}
+@media (max-width: 341px) {
+  .boton i {
+    font-size: 18px;
+  }
+  .boton {
+    padding: 10px 15px;
+  }
+}
+@media (max-width: 992px) {
+  .containerMobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+  }
+  .containerMobile ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .containerMobile i {
+    font-size: 32px;
+  }
+  .navbar {
+    padding: 0;
+  }
+  .container-footer {
+    display: none;
+  }
+  .container-center h2 {
+    font-size: 18px;
+  }
+}/*# sourceMappingURL=conversacion.css.map */

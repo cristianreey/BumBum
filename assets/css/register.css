@@ -66,4 +66,50 @@ input[type=date]:focus {
 
 .toggle-password-btn i {
   font-size: inherit;
+}
+
+/* Estilos para la capa de color con opacidad */
+.formulario-overlay {
+  position: relative;
+  top: 0;
+  right: 50px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Estilos para la imagen */
+.formulario-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Ajusta el formulario para que esté encima de la capa de color */
+.container-form {
+  position: relative;
+  z-index: 2;
+}
+
+.logoimg {
+  display: none;
+  width: 150px;
+  left: 50%;
+  transform: translateX(25%);
+}
+
+@media (max-width: 700px) {
+  .logoimg {
+    display: block;
+  }
+  .portada {
+    display: none;
+  }
+  .formulario {
+    width: 100%;
+  }
 }/*# sourceMappingURL=register.css.map */
