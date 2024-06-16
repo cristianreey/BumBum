@@ -13,7 +13,26 @@
 </head>
 
 <style>
+    @media (max-width: 700px) {
+        .logoimg {
+            display: block;
+        }
 
+        .portada {
+            display: none;
+        }
+
+        .formulario {
+            width: 100%;
+            height: auto;
+            padding-bottom: 20px;
+        }
+
+        .formulario-background {
+            width: 100%;
+            height: 100%;
+        }
+    }
 </style>
 
 <body>
@@ -26,7 +45,7 @@
     <div class="formulario-overlay"></div>
 
     <!-- Imagen de fondo -->
-    <img src="../assets/img/fondoLogin.webp" class="formulario-background" alt="">
+    <img src="../assets/img/fondoLogin.webp" class="formulario-background" id="formulario-background" alt="">
     <section class="formulario">
         <div class="container-form">
             <form class="registro-form" action="../controller/registro_Controller.php" method="POST">
@@ -59,5 +78,16 @@
     <script src="../assets/js/login.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
+<script>
+    function adjustMarginTop() {
+        var foto = document.getElementById('formulario-background');
+        var formulario = document.querySelector('.formulario');
+        var headerHeight = formulario.offsetHeight;
+        foto.style.height = (headerHeight) + 'px';
+    }
+
+    window.addEventListener('resize', adjustMarginTop);
+    window.addEventListener('load', adjustMarginTop);
+</script>
 
 </html>

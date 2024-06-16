@@ -5,23 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="../assets/css/verificacion.css">
     <link rel="stylesheet" href="../assets/css/estilo.css">
 
-
-    <title>Verificación | BumBum</title>
-    <style>
-
-    </style>
+    <title>Inicio de Sesión | BumBum</title>
 </head>
+<style>
+    @media (max-width: 700px) {
+        .logoimg {
+            display: block;
+        }
 
-<script>
-    function eliminarEspacios() {
-        var inputCodigo = document.getElementById("cod_verificacion");
-        inputCodigo.value = inputCodigo.value.replace(/\s/g, '');
+        .portada {
+            display: none;
+        }
+
+        .formulario {
+            width: 100%;
+
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
     }
-</script>
+</style>
 
 <body>
     <section class="portada">
@@ -47,26 +59,9 @@
             </form>
         </div>
     </section>
-
+    <script src="../assets/js/login.js"> </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-        // Obtener el parámetro 'error' de la URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const error = urlParams.get("error");
 
-        // Mostrar una alerta si 'error' es 'true'
-        if (error === "true") {
-            // Alerta con SweetAlert2 si el formato del teléfono es incorrecto
-            Swal.fire({
-                icon: "error",
-                title: "¡Oops!",
-                text: "Por favor, Vuelve a introducir el código de verificación correcto.",
-                confirmButtonColor: "black",
-                confirmButtonText: "Entendido",
-            });
-
-        }
-    </script>
 </body>
 
 </html>

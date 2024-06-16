@@ -29,8 +29,6 @@
 .logoimg {
   display: none;
   width: 150px;
-  left: 50%;
-  transform: translateX(25%);
 }
 
 @media (max-width: 700px) {
@@ -43,4 +41,4 @@
   .formulario {
     width: 100%;
   }
-}/*# sourceMappingURL=verificacion.css.map */
+} /*# sourceMappingURL=verificacion.css.map */

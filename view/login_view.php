@@ -8,12 +8,22 @@
     <link rel="stylesheet" href="../assets/css/login.css">
     <link rel="stylesheet" href="../assets/css/estilo.css">
 
-
-
     <title>Inicio de Sesión | BumBum</title>
 </head>
 <style>
+    @media (max-width: 700px) {
+        .logoimg {
+            display: block;
+        }
 
+        .portada {
+            display: none;
+        }
+
+        .formulario {
+            width: 100%;
+        }
+    }
 </style>
 
 <body>
