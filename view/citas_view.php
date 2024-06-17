@@ -12,7 +12,7 @@ include ("../controller/main_Controller.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | BumBum</title>
+    <title>Citas | BumBum</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -23,6 +23,8 @@ include ("../controller/main_Controller.php");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Moul&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/citas.css">
+    <link rel="icon" type="image/x-icon" href="../assets/img/LogoBumBum.png">
+
 
 
 

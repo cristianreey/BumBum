@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/register.css">
     <link rel="stylesheet" href="../assets/css/estilo.css">
+    <link rel="icon" type="image/x-icon" href="../assets/img/LogoBumBum.png">
+
 
 
     <title>Registro | BumBum</title>
